@@ -1,0 +1,27 @@
+.loginWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navigationLogin {
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
+  border-left: 2px solid black;
+  width: 75%;
+  margin-bottom: 1%;
+}
+
+.formStyle {
+  padding: 4%;
+  border: 1px solid gray;
+}
+
+.loginButton {
+  margin-left: 30%;
+  margin-top: 5%;
+}
+
+.formLabel {
+  font-weight: bolder;
+}

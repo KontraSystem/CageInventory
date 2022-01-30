@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
-import {CgLogIn} from "@react-icons/all-files/cg/CgLogIn"
+import { CgLogIn } from "@react-icons/all-files/cg/CgLogIn";
 import "./Navigation.css";
 
 export default class NavigationBar extends Component {
@@ -9,20 +9,21 @@ export default class NavigationBar extends Component {
       <>
         <Navbar className="orangeColor" expand="lg">
           <Container>
-            
             <Nav.Link>
-                <Navbar.Brand className="navbarBrand">RIT</Navbar.Brand>
+              <Navbar.Brand className="navbarBrand">RIT</Navbar.Brand>
             </Nav.Link>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#link">Link</Nav.Link>
+                <Nav.Link href="/">Home</Nav.Link>
+                <Nav.Link href="/about">Link</Nav.Link>
               </Nav>
             </Navbar.Collapse>
             <Nav>
-                <CgLogIn />
-                <Nav.Link>Login</Nav.Link>
+              <Nav.Link className="navbarLogin">
+                <CgLogIn className="mx-2" size="1.5rem" />
+                Login
+              </Nav.Link>
             </Nav>
           </Container>
         </Navbar>
