@@ -6,8 +6,8 @@ import "./Navigation.css";
 export default class NavigationBar extends Component {
   render() {
     return (
-      <>
-        <Navbar className="orangeColor" expand="lg">
+      <div>
+        <Navbar className="orangeColor max-w" expand="lg">
           <Container>
             <Nav.Link>
               <Navbar.Brand className="navbarBrand">RIT</Navbar.Brand>
@@ -15,19 +15,21 @@ export default class NavigationBar extends Component {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Link href="/">Home</Nav.Link>
-                <Nav.Link href="/about">Link</Nav.Link>
+                <Nav.Link href="/home">Home</Nav.Link>
+                <Nav.Link href="/active">Active</Nav.Link>
+                <Nav.Link href="/courses">Courses</Nav.Link>
+                <Nav.Link href="/inventory">Courses</Nav.Link>
+              </Nav>
+              <Nav>
+                <Nav.Link className="navbarLogout">
+                  <CgLogIn className="mx-2" size="1.5rem" />
+                  Logout
+                </Nav.Link>
               </Nav>
             </Navbar.Collapse>
-            <Nav>
-              <Nav.Link className="navbarLogin">
-                <CgLogIn className="mx-2" size="1.5rem" />
-                Login
-              </Nav.Link>
-            </Nav>
           </Container>
         </Navbar>
-      </>
+      </div>
     );
   }
 }

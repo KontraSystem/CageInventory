@@ -1,19 +1,17 @@
 import React from "react";
 import { Button, Container, Form, Navbar } from "react-bootstrap";
-import "./Login.css";
-import "./Navigation.css";
+import "../components/Login.css";
+import "../components/Navigation.css";
 
 export default function Login() {
   return (
     <div className="loginWrapper">
       <LoginNavigation />
-
       <Form className="formStyle">
         <Form.Group className="mb-3">
           <Form.Label className="formLabel">RIT Username</Form.Label>
           <Form.Control type="text" />
         </Form.Group>
-
         <Form.Group>
           <Form.Label className="formLabel">Password</Form.Label>
           <Form.Control type="password" />
