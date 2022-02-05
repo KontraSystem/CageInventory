@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { CgLogIn } from "@react-icons/all-files/cg/CgLogIn";
 import "./Navigation.css";
-import "../App.css"
+import "../App.css";
 
 export default class NavigationBar extends Component {
   render() {

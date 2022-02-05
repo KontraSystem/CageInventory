@@ -1,12 +1,11 @@
-import React  from "react";
+import React from "react";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Active from "./pages/Active";
 import Inventory from "./pages/Inventory";
-import {  BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Courses from "./pages/Courses";
-
 
 function App() {
   /**
@@ -19,16 +18,16 @@ function App() {
   */
 
   return (
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/courses" element={<Courses />} />
-          <Route path="/active" element={<Active />} />
-          <Route path="/inventory" element={<Inventory />} />
-          <Route path="*" element={<Navigate to="/" />}/>
-        </Routes>
-      </BrowserRouter>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/courses" element={<Courses />} />
+        <Route path="/active" element={<Active />} />
+        <Route path="/inventory" element={<Inventory />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

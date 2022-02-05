@@ -6,30 +6,25 @@
 
 .navigationLogin {
   border-bottom: 2px solid black;
-  border-right: 2px solid black;
-  border-left: 2px solid black;
-  width: 75%;
-  margin-bottom: 1%;
+  box-shadow: 5px 5px 10px black;
+  width: 100%;
 }
 
-.formStyle {
-  padding: 4%;
-  border: 1px solid gray;
+body {
+  background: url("../../public/ritbackground.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.loginForm {
+  margin-top: 3%;
+  background: white;
+  text-align: center;
+  width: auto;
+  padding: 2%;
+  box-shadow: 0px 10px 20px 5px rgb(0, 0, 0);
 }
 
-.loginButton {
-  margin-left: 30%;
-  margin-top: 5%;
-}
-
-.formLabel {
-  font-weight: bolder;
-}
-
-.orangeBorder{
-  border-color: #f76902;
-}
-
-.orangeColorHover:hover{
-  background-color: #c95400;
+.loginTitle {
+  font-weight: 700;
+  font-family: Arial, Helvetica, sans-serif;
 }
