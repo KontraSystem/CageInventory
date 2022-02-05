@@ -1,7 +1,8 @@
 import React from "react";
 import { Button, Container, Form, Navbar } from "react-bootstrap";
-import "../components/Login.css";
+import "./Login.css";
 import "../components/Navigation.css";
+import "../App.css"
 
 export default function Login() {
   return (
@@ -17,7 +18,7 @@ export default function Login() {
           <Form.Control type="password" />
         </Form.Group>
         <div className="loginButton">
-          <Button variant="primary" type="submit">
+          <Button className="orangeColor border orangeColorHover" type="submit">
             Login
           </Button>
         </div>

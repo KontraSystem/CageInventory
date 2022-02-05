@@ -19,7 +19,6 @@ function App() {
   */
 
   return (
-    <div className="wrapper">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
@@ -30,7 +29,6 @@ function App() {
           <Route path="*" element={<Navigate to="/" />}/>
         </Routes>
       </BrowserRouter>
-    </div>
   );
 }
 
