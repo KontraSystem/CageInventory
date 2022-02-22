@@ -4,7 +4,7 @@ import Login from "./pages/Login";
 import Active from "./pages/Active";
 import Inventory from "./pages/Inventory";
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
-import "./App.css";
+import "./index.css";
 import Courses from "./pages/Courses";
 
 function App() {
