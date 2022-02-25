@@ -3,11 +3,12 @@ import NavigationBar from "../components/NavigationBar";
 import "../App.css";
 
 export default function Home() {
+
   return (
-    <div>
+    <div >      
       <NavigationBar />
-      <div className="wrapper">
-        <h2>Home page</h2>
+      <div className={``}>
+        <p>Home pagasdasdasse</p>
       </div>
     </div>
   );
