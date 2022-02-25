@@ -3,9 +3,8 @@ import NavigationBar from "../components/NavigationBar";
 import "../App.css";
 
 export default function Home() {
-
   return (
-    <div >      
+    <div>
       <NavigationBar />
       <div className={``}>
         <p>Home pagasdasdasse</p>

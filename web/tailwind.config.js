@@ -1,13 +1,11 @@
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
-      colors:{
-        'orange': '#F76902'
-      }
+      colors: {
+        orange: "#F76902",
+      },
     },
   },
   plugins: [],
-}
+};
