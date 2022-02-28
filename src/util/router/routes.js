@@ -3,12 +3,17 @@ import Courses from '../../pages/Courses'
 import Home from '../../pages/Home'
 import Inventory from '../../pages/Inventory'
 import Login from '../../pages/Login'
+import Register from '../../pages/Register'
 import Error from '../../pages/Error'
 
 // ** Default Route
 const LoginRoute = {
 	path: '/login',
 	component: <Login />,
+}
+const RegisterRoute = {
+	path: '/register',
+	component: <Register />,
 }
 
 // ** Merge Routes
@@ -35,4 +40,4 @@ const AllRoutes = [
 	},
 ]
 
-export { LoginRoute, AllRoutes }
+export { RegisterRoute, LoginRoute, AllRoutes }

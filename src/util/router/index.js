@@ -10,7 +10,7 @@ import {
 } from 'react-router-dom'
 
 // ** Routes & Default Routes
-import { LoginRoute, AllRoutes } from './routes'
+import { LoginRoute, RegisterRoute, AllRoutes } from './routes'
 
 const Router = () => {
 	return (
@@ -24,6 +24,11 @@ const Router = () => {
 					/>
 				))}
 				<Route exact path={LoginRoute.path} element={LoginRoute.component} />
+				<Route
+					exact
+					path={RegisterRoute.path}
+					element={RegisterRoute.component}
+				/>
 			</Routes>
 		</AppRouter>
 	)
