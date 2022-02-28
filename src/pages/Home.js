@@ -8,7 +8,6 @@ export default function Home() {
 	const [navBarClicked, isNavbarClicked] = useState(false)
 	const toggleVisibility = () => {
 		isNavbarClicked(!navBarClicked)
-		console.log(navBarClicked, 'navbar clicked')
 	}
 	return (
 		<div

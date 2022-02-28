@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext } from 'react'
 
-const DialogContext = createContext(null);
-export default DialogContext;
+const DialogContext = createContext(null)
+export default DialogContext

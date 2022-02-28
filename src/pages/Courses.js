@@ -6,8 +6,8 @@ export default function Courses() {
 	const [navBarClicked, isNavbarClicked] = useState(false)
 	const toggleVisibility = () => {
 		isNavbarClicked(!navBarClicked)
-		console.log(navBarClicked, 'navbar clicked')
 	}
+
 	return (
 		<div
 			className={`${navBarClicked ? 'grid grid-flow-col auto-cols-min' : ''}`}
