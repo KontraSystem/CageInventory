@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import '../App.css'
 import { useNavigate } from 'react-router-dom'
+import { postLogin } from '../api'
 
 export default function Login() {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+
+	const [error, setError] = useState('')
 	const navigate = useNavigate()
 
 	useEffect(() => {
@@ -14,37 +16,20 @@ export default function Login() {
 		}
 	})
 
-	const routeChange = () => {
-		let path = `home`
-		navigate(path)
-	}
-
-	const handleLogin = () => {
-		axios
-			.post(
-				'/auth/login',
-				{},
-				{
-					auth: {
-						username: email,
-						password: password,
-					},
-				}
-			)
-			.then((resp) => {
-				if (resp.data.message === 'Success' && resp.data.response.token) {
-					localStorage.setItem('token', resp.data.response.token)
-					routeChange()
+	const handleLogin = async () => {
+		postLogin({
+			email: email,
+			password: password,
+		})
+			.then((res) => {
+				if (res.data.response.token) {
+					localStorage.setItem('token', res.data.response.token)
+					navigate('/')
 				}
 			})
-	}
-
-	const handleChange = (evt) => {
-		if (evt.target.id === 'email_field') {
-			setEmail(evt.target.value)
-		} else {
-			setPassword(evt.target.value)
-		}
+			.catch((err) => {
+				setError(err.response.data?.message ?? 'Something went wrong')
+			})
 	}
 
 	return (
@@ -55,7 +40,7 @@ export default function Login() {
 				<input
 					id="email_field"
 					value={email}
-					onChange={handleChange}
+					onChange={({ target }) => setEmail(target.value)}
 					type="email"
 					name="email"
 					className="mb-5 p-3 w-80 focus:border-purple-700 rounded border-2 outline-none"
@@ -66,7 +51,7 @@ export default function Login() {
 				<input
 					id="password_field"
 					value={password}
-					onChange={handleChange}
+					onChange={({ target }) => setPassword(target.value)}
 					type="password"
 					name="password"
 					className="mb-5 p-3 w-80 focus:border-purple-700 rounded border-2 outline-none "
@@ -74,13 +59,14 @@ export default function Login() {
 					placeholder="Password"
 					required
 				/>
+				<p className="mb-3 text-red-500">{error}</p>
 				<button
 					className="bg-green-600 hover:bg-green-900 text-white font-bold p-2 rounded w-32 mb-3"
 					id="login"
 					type="submit"
 					onClick={handleLogin}
 				>
-					<span>Login</span>
+					Login
 				</button>
 				<a href="/" className="text-sm text-gray-400 hover:text-green-600">
 					Forgot password?
