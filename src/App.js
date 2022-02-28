@@ -1,34 +1,7 @@
-import React from "react";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Active from "./pages/Active";
-import Inventory from "./pages/Inventory";
-import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
-import "./index.css";
-import Courses from "./pages/Courses";
+import React from 'react'
+import Router from './util/router/index'
+import './global.css'
 
-function App() {
-  /**
-  const { token, setToken } = useState();
+const App = () => <Router />
 
-  if (!token) {
-    return <Login setToken={setToken} />;
-  }
-   <Route path="/home" exact to={<Home setToken={setToken} />} />
-  */
-
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/courses" element={<Courses />} />
-        <Route path="/active" element={<Active />} />
-        <Route path="/inventory" element={<Inventory />} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </BrowserRouter>
-  );
-}
-
-export default App;
+export default App
