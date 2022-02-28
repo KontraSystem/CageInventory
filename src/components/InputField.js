@@ -21,7 +21,7 @@ function InputField({
 				onChange={onChange}
 				type={type}
 				name={name}
-				className="p-2 w-80 focus:border-purple-700 rounded border-2 outline-none"
+				className="p-2 w-[100%] focus:border-purple-700 rounded border-2 outline-none"
 				autoComplete="off"
 				required={required}
 			/>

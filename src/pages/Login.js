@@ -37,9 +37,9 @@ export default function Login() {
 
 	return (
 		<div className="bg-orange overflow-hidden">
-			<div className="h-screen px-[20vw] flex flex-col gap-8 justify-center items-center overflow-auto p-4">
+			<div className="h-screen px-[20vw] flex flex-col gap-8 justify-center items-center overflow-auto p-8">
 				<div className="p-4 w-[100%] bg-white rounded flex justify-center items-center flex-col shadow-lg z-10">
-					<img src="RIT_rgb_hor_k.png" className="mb-3" width={500} />
+					<img src="RIT_rgb_hor_k.png" width={500} />
 					<h1 className="font-bold text-2xl">Cage Inventory</h1>
 				</div>
 				<form
@@ -48,8 +48,14 @@ export default function Login() {
 				>
 					<h3 className="font-bold text-2xl">Login</h3>
 
-					<InputField type="email" name="email" label="Email" />
-					<InputField type="password" name="password" label="Password" />
+					<div className="w-80 max-w-[100%] flex flex-col gap-5">
+						<InputField type="email" name="email" label="Email" />
+						<InputField
+							type="password"
+							name="password"
+							label="Password"
+						/>
+					</div>
 
 					{error && <p className="text-red-500">{error}</p>}
 					<button
