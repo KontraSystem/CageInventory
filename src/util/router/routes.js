@@ -1,36 +1,38 @@
-import { lazy } from 'react'
+import Active from '../../pages/Active'
+import Courses from '../../pages/Courses'
+import Home from '../../pages/Home'
+import Inventory from '../../pages/Inventory'
+import Login from '../../pages/Login'
+import Error from '../../pages/Error'
 
 // ** Default Route
-const DefaultRoute = '/home'
-const LoginRoute = '/login'
-const ErrorRoute = '/error'
+const LoginRoute = {
+	path: '/login',
+	component: <Login />,
+}
 
 // ** Merge Routes
 const AllRoutes = [
 	{
 		path: '/active',
-		component: lazy(() => import('../../pages/Active')),
+		component: <Active />,
 	},
 	{
 		path: '/courses',
-		component: lazy(() => import('../../pages/Courses')),
+		component: <Courses />,
 	},
 	{
-		path: DefaultRoute,
-		component: lazy(() => import('../../pages/Home')),
+		path: '/',
+		component: <Home />,
 	},
 	{
 		path: '/inventory',
-		component: lazy(() => import('../../pages/Inventory')),
+		component: <Inventory />,
 	},
 	{
-		path: LoginRoute,
-		component: lazy(() => import('../../pages/Login')),
-	},
-	{
-		path: ErrorRoute,
-		component: lazy(() => import('../../pages/Error')),
+		path: '*',
+		component: <Error />,
 	},
 ]
 
-export { DefaultRoute, LoginRoute, ErrorRoute, AllRoutes }
+export { LoginRoute, AllRoutes }

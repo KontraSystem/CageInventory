@@ -1,49 +1,49 @@
 import React from 'react'
+import { useEffect } from 'react'
 
 // ** Router Components
 import {
 	BrowserRouter as AppRouter,
 	Route,
 	Routes,
-	Navigate,
+	useNavigate,
 } from 'react-router-dom'
 
 // ** Routes & Default Routes
-import { DefaultRoute, LoginRoute, ErrorRoute, AllRoutes } from './routes'
+import { LoginRoute, AllRoutes } from './routes'
 
 const Router = () => {
-	const isUserLoggedIn = () => !!localStorage.getItem('token')
-
 	return (
-		<AppRouter basename={process.env.REACT_APP_BASENAME}>
+		<AppRouter>
 			<Routes>
-				<Route
-					exact
-					path="/"
-					render={() => {
-						return isUserLoggedIn() ? (
-							<Navigate to={DefaultRoute} />
-						) : (
-							<Navigate to={LoginRoute} />
-						)
-					}}
-				/>
-
-				{AllRoutes.map((route) => {
-					return (
-						<Route
-							key={route.path}
-							path={route.path}
-							exact={route.exact === true}
-							render={(props) => <route.component {...props} />}
-						/>
-					)
-				})}
-
-				<Route path="*" render={() => <Navigate to={ErrorRoute} />} />
+				{AllRoutes.map((route) => (
+					<Route
+						key={route.path}
+						path={route.path}
+						element={<PrivateRoute>{route.component}</PrivateRoute>}
+					/>
+				))}
+				<Route exact path={LoginRoute.path} element={LoginRoute.component} />
 			</Routes>
 		</AppRouter>
 	)
 }
 
 export default Router
+
+const PrivateRoute = (props) => {
+	const navigate = useNavigate()
+	const { children } = props
+
+	useEffect(() => {
+		if (!localStorage.getItem('token')) {
+			navigate('/login')
+		}
+	})
+
+	if (!localStorage.getItem('token')) {
+		return <></> //TODO: Add loading indicator
+	}
+
+	return children
+}
