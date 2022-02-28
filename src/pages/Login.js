@@ -33,7 +33,7 @@ export default function Login() {
 	}
 
 	return (
-		<div className="h-screen flex justify-center items-center bg-orange">
+		<div className="h-screen flex justify-center items-center bg-orange overflow-hidden">
 			<div className="p-10 mx-5 bg-white rounded flex justify-center items-center flex-col shadow-lg z-10">
 				<img src="RIT_rgb_hor_k.png" className="mb-3" width={500} />
 				<h1 className="font-bold text-2xl mb-5">CAGE INVENTORY</h1>
