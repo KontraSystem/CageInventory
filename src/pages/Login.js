@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react'
 import '../App.css'
 import { useNavigate } from 'react-router-dom'
 import { postLogin } from '../api'
+import { RegisterRoute } from '../util/router/routes'
+import { InputField } from '../components/'
 
 export default function Login() {
-	const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
-
 	const [error, setError] = useState('')
+
 	const navigate = useNavigate()
 
 	useEffect(() => {
@@ -16,10 +16,13 @@ export default function Login() {
 		}
 	})
 
-	const handleLogin = async () => {
+	const onLogin = (event) => {
+		event.preventDefault()
+		const { email, password } = event.target
+
 		postLogin({
-			email: email,
-			password: password,
+			email: email.value,
+			password: password.value,
 		})
 			.then((res) => {
 				if (res.data.response.token) {
@@ -33,44 +36,47 @@ export default function Login() {
 	}
 
 	return (
-		<div className="h-screen flex justify-center items-center bg-orange overflow-hidden">
-			<div className="p-10 mx-5 bg-white rounded flex justify-center items-center flex-col shadow-lg z-10">
-				<img src="RIT_rgb_hor_k.png" className="mb-3" width={500} />
-				<h1 className="font-bold text-2xl mb-5">CAGE INVENTORY</h1>
-				<input
-					id="email_field"
-					value={email}
-					onChange={({ target }) => setEmail(target.value)}
-					type="email"
-					name="email"
-					className="mb-5 p-3 w-80 focus:border-purple-700 rounded border-2 outline-none"
-					autoComplete="off"
-					placeholder="Username"
-					required
-				/>
-				<input
-					id="password_field"
-					value={password}
-					onChange={({ target }) => setPassword(target.value)}
-					type="password"
-					name="password"
-					className="mb-5 p-3 w-80 focus:border-purple-700 rounded border-2 outline-none "
-					autoComplete="off"
-					placeholder="Password"
-					required
-				/>
-				<p className="mb-3 text-red-500">{error}</p>
-				<button
-					className="bg-green-600 hover:bg-green-900 text-white font-bold p-2 rounded w-32 mb-3"
-					id="login"
-					type="submit"
-					onClick={handleLogin}
+		<div className="bg-orange overflow-hidden">
+			<div className="h-screen px-[20vw] flex flex-col gap-8 justify-center items-center overflow-auto p-4">
+				<div className="p-4 w-[100%] bg-white rounded flex justify-center items-center flex-col shadow-lg z-10">
+					<img src="RIT_rgb_hor_k.png" className="mb-3" width={500} />
+					<h1 className="font-bold text-2xl">Cage Inventory</h1>
+				</div>
+				<form
+					className="w-[100%] p-10 bg-white rounded flex gap-5 justify-center items-center flex-col shadow-lg z-10"
+					onSubmit={onLogin}
 				>
-					Login
-				</button>
-				<a href="/" className="text-sm text-gray-400 hover:text-green-600">
-					Forgot password?
-				</a>
+					<h3 className="font-bold text-2xl">Login</h3>
+
+					<InputField type="email" name="email" label="Email" />
+					<InputField type="password" name="password" label="Password" />
+
+					{error && <p className="text-red-500">{error}</p>}
+					<button
+						className="bg-green-500 hover:bg-green-300 transition text-white font-bold p-2 rounded w-32"
+						type="submit"
+					>
+						Login
+					</button>
+
+					<a
+						href="/"
+						className="text-sm text-gray-400 hover:text-green-600"
+					>
+						Forgot password?
+					</a>
+				</form>
+				<div className="p-4 w-[100%] bg-white rounded flex justify-center items-center flex-col shadow-lg z-10">
+					<p>
+						New to Cage Inventory?
+						<a
+							href={RegisterRoute.path}
+							className="text-lg text-green-500 hover:text-green-300 ml-5"
+						>
+							Register
+						</a>
+					</p>
+				</div>
 			</div>
 			<div className="absolute top-24 -left-80">
 				<img src="tigerLogo.png" width="1000" />
