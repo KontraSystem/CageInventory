@@ -17,7 +17,7 @@ export default function InventoryCard() {
 	}
 
 	return (
-		<div className="m-12 bg-gray-300 shadow rounded">
+		<div className="mx-12 bg-gray-300 shadow rounded relative">
 			<div className="p-4 grid grid-cols-6 gap-8">
 				<Cards
 					imageUrl={

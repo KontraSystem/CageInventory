@@ -13,17 +13,17 @@
 
 ## 📝 Table of Contents
 
-- [📝 Table of Contents](#-table-of-contents)
-- [🏁 Getting Started <a name = "getting_started"></a>](#-getting-started-)
-  - [Prerequisites](#prerequisites)
-  - [Installing](#installing)
-- [⛏️ Built Using <a name = "built_using"></a>](#️-built-using-)
-- [👤️ Team members <a name = "team_members"></a>](#️-team-members-)
+-   [📝 Table of Contents](#-table-of-contents)
+-   [🏁 Getting Started <a name = "getting_started"></a>](#-getting-started-)
+    -   [Prerequisites](#prerequisites)
+    -   [Installing](#installing)
+-   [⛏️ Built Using <a name = "built_using"></a>](#️-built-using-)
+-   [👤️ Team members <a name = "team_members"></a>](#️-team-members-)
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
 These instructions will get you a copy of the project up and running on your local machine for development
-and testing purposes. 
+and testing purposes.
 
 ### Prerequisites
 
@@ -55,16 +55,14 @@ or
 yarn start
 ```
 
-
 ## ⛏️ Built Using <a name = "built_using"></a>
 
-- [React](https://reactjs.org/) - Main Framework (Library)
-- [Tailwind](https://tailwindcss.com/) - CSS framework
+-   [React](https://reactjs.org/) - Main Framework (Library)
+-   [Tailwind](https://tailwindcss.com/) - CSS framework
 
 ## 👤️ Team members <a name = "team_members"></a>
 
-- [@KontraSystem](https://github.com/KontraSystem)
-- [@JosipMuzicRIT](https://github.com/JosipMuzicRIT)
-- [@GadzoFilip](https://github.com/GadzoFilip)
-- [@mateomb](https://github.com/mateomb)
-
+-   [@KontraSystem](https://github.com/KontraSystem)
+-   [@JosipMuzicRIT](https://github.com/JosipMuzicRIT)
+-   [@GadzoFilip](https://github.com/GadzoFilip)
+-   [@mateomb](https://github.com/mateomb)

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import '../App.css'
+import '../components/navigationCSS.css'
 import { useNavigate } from 'react-router-dom'
 
 export default function NavigationBar({ onClick }) {

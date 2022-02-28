@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
+import '../components/navigationCSS.css'
 
 export default function SecondNavBar() {
 	const [iconClick, isIconClick] = useState()
 	return (
-		<div className={`flex flex-col group h-screen shadow bg-white w-96`}>
+		<div className={`flex flex-col group h-screen shadow bg-white w-96 sidebar`}>
 			<div className="border-b-2 border-gray-600">
 				<div className="flex ml-12 p-4 ">
 					<img
@@ -12,8 +13,8 @@ export default function SecondNavBar() {
 						alt="Profile image"
 					/>
 					<div className="ml-5">
-						<p className="font-bold text-xl mt-2">Username</p>
-						<p className="ml-8">role</p>
+						<p className="font-bold text-xl mt-2">Josip Muzić</p>
+						<p className="ml-8">Admin</p>
 					</div>
 				</div>
 			</div>
