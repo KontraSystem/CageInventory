@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import '../App.css'
 import { useNavigate } from 'react-router-dom'
-import { postLogin } from '../api'
-import { RegisterRoute } from '../util/router/routes'
+import { postRegister } from '../api'
+import { LoginRoute } from '../util/router/routes'
 import { InputField } from '../components/'
 
-export default function Login() {
+export default function Register() {
 	const [error, setError] = useState('')
 
 	const navigate = useNavigate()
@@ -16,13 +16,22 @@ export default function Login() {
 		}
 	})
 
-	const onLogin = (event) => {
+	const onRegister = (event) => {
 		event.preventDefault()
-		const { email, password } = event.target
+		const { email, password, firstName, lastName, username } = event.target
 
-		postLogin({
+		// RoleId is currently hardcoded, change this in order to get the role id you want
+		// Admin - 111
+		// Worker - 222
+		// Student - 333
+		// Professor - 444
+		postRegister({
 			email: email.value,
 			password: password.value,
+			firstName: firstName.value,
+			lastName: lastName.value,
+			username: username.value,
+			roleId: 333,
 		})
 			.then((res) => {
 				if (res.data.response.token) {
@@ -37,24 +46,27 @@ export default function Login() {
 
 	return (
 		<div className="bg-orange overflow-hidden">
-			<div className="h-screen px-[20vw] flex flex-col gap-8 justify-center items-center overflow-auto p-8">
+			<div className="h-screen p-8 px-[20vw] flex flex-col gap-8 justify-center items-center overflow-auto">
 				<div className="p-4 w-[100%] bg-white rounded flex justify-center items-center flex-col shadow-lg z-10">
 					<img src="RIT_rgb_hor_k.png" width={500} />
 					<h1 className="font-bold text-2xl">Cage Inventory</h1>
 				</div>
 				<form
 					className="w-[100%] p-10 bg-white rounded flex gap-5 justify-center items-center flex-col shadow-lg z-10"
-					onSubmit={onLogin}
+					onSubmit={onRegister}
 				>
-					<h3 className="font-bold text-2xl">Login</h3>
+					<h3 className="font-bold text-2xl">Register</h3>
 
-					<div className="w-80 max-w-[100%] flex flex-col gap-5">
+					<div className="w-[100%] grid grid-cols-1 gap-4 lg:grid-cols-2">
 						<InputField type="email" name="email" label="Email" />
 						<InputField
 							type="password"
 							name="password"
 							label="Password"
 						/>
+						<InputField name="firstName" label="First Name" />
+						<InputField name="lastName" label="Last Name" />
+						<InputField name="username" label="Username" />
 					</div>
 
 					{error && <p className="text-red-500">{error}</p>}
@@ -62,24 +74,17 @@ export default function Login() {
 						className="bg-green-500 hover:bg-green-300 transition text-white font-bold p-2 rounded w-32"
 						type="submit"
 					>
-						Login
+						Register
 					</button>
-
-					<a
-						href="/"
-						className="text-sm text-gray-400 hover:text-green-600"
-					>
-						Forgot password?
-					</a>
 				</form>
 				<div className="p-4 w-[100%] bg-white rounded flex justify-center items-center flex-col shadow-lg z-10">
 					<p>
-						New to Cage Inventory?
+						Already have an account?
 						<a
-							href={RegisterRoute.path}
+							href={LoginRoute.path}
 							className="text-lg text-green-500 hover:text-green-300 ml-5"
 						>
-							Register
+							Login
 						</a>
 					</p>
 				</div>
