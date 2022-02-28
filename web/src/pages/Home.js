@@ -17,10 +17,10 @@ export default function Home() {
       <div className={`${navBarClicked ? "visible" : "hidden"}`}>
         <SecondNavBar />
       </div>
-      <div
-        className={`${navBarClicked ? "w-screen" : "w-full"} overflow-x-hidden`}
-      >
+      <div className={`${navBarClicked ? "w-screen" : "w-full"}`}>
         <NavigationBar onClick={toggleVisibility} />
+        <InventoryCard />
+        <InventoryCard />
         <InventoryCard />
       </div>
     </div>
