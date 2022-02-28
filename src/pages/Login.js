@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import '../App.css'
 import { useNavigate } from 'react-router-dom'
@@ -6,8 +6,14 @@ import { useNavigate } from 'react-router-dom'
 export default function Login() {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+	const navigate = useNavigate()
 
-	let navigate = useNavigate()
+	useEffect(() => {
+		if (localStorage.getItem('token')) {
+			navigate('/')
+		}
+	})
+
 	const routeChange = () => {
 		let path = `home`
 		navigate(path)
