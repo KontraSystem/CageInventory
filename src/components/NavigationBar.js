@@ -24,17 +24,17 @@ export default function NavigationBar({ onClick }) {
 				>
 					<div
 						className={`${genericHamburgerLine} ${
-							navBarOpen ? 'rotate-45 translate-y-3 ' : ''
+							navBarOpen ? 'rotate-45 translate-y-3' : 'my-0.5'
 						}`}
 					/>
 					<div
 						className={`${genericHamburgerLine} ${
-							navBarOpen ? 'opacity-0' : ''
+							navBarOpen ? 'opacity-0' : 'my-0.5'
 						}`}
 					/>
 					<div
 						className={`${genericHamburgerLine} ${
-							navBarOpen ? '-rotate-45 -translate-y-3' : ''
+							navBarOpen ? '-rotate-45 -translate-y-3' : 'my-0.5'
 						}`}
 					/>
 				</div>
