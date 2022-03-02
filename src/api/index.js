@@ -12,3 +12,4 @@ export const postRegister = (body) => axios.post(`${BASE_URL}auth/register`, bod
 
 //* GET
 export const getItems = () => axios.get(`${BASE_URL}items/all`, getToken())
+export const getItemById = (id) => axios.get(`${BASE_URL}items/${id}`, getToken())
