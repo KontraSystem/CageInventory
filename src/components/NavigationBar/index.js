@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import '../App.css'
-import '../components/navigationCSS.css'
+import './navigationCSS.css'
 import { useNavigate } from 'react-router-dom'
 
 export default function NavigationBar({ onClick }) {
@@ -16,9 +15,9 @@ export default function NavigationBar({ onClick }) {
 	const genericHamburgerLine = `h-1 w-6 my-1 rounded-full bg-white transition ease transform duration-200`
 	return (
 		<div>
-			<div className="flex bg-orange border-b-2 border-gray-300">
+			<div className="flex bg-orange border-b-2 border-gray-300 items-center gap-4 px-4">
 				<div
-					className={`flex flex-col h-20 w-12 rounded justify-center items-center group hover:cursor-pointer ml-2`}
+					className="flex flex-col h-20 w-12 rounded justify-center items-center group hover:cursor-pointer"
 					onClick={onClick}
 					onClickCapture={onNavBarClick}
 				>
@@ -38,18 +37,14 @@ export default function NavigationBar({ onClick }) {
 						}`}
 					/>
 				</div>
-				<h1 className={`pt-6 text-white text-xl font-bold ml-2`}>
-					RIT Cage Inventory
-				</h1>
-				<i className="absolute opacity-70 right-0 mr-36 top-8 mt-1 hover:cursor-pointer fa fa-bell text-white"></i>
-				<div className="flex right-0 absolute mr-12 mt-4">
-					<button
-						className={`bg-white rounded p-2 hover:cursor-pointer hover:text-orange`}
-						onClick={onLogout}
-					>
-						<p>Logout</p>
-					</button>
-				</div>
+				<h1 className="text-white text-xl font-bold">RIT Cage Inventory</h1>
+				<i className="ml-auto opacity-70 hover:cursor-pointer fa fa-bell text-white"></i>
+				<button
+					className="bg-white rounded px-4 py-2 hover:cursor-pointer hover:text-orange transition"
+					onClick={onLogout}
+				>
+					<p>Logout</p>
+				</button>
 			</div>
 		</div>
 	)

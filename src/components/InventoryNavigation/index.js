@@ -1,6 +1,3 @@
-import React from 'react'
-import './navigationCSS.css'
-
 export default function InventoryNavigation() {
 	return (
 		<div className="bg-orange text-white">
