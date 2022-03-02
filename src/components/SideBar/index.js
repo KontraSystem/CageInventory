@@ -1,4 +1,6 @@
 export default function SideBar() {
+	const role = localStorage.getItem('role')
+
 	const createNavItem = (text, route) => (
 		<li className="hover:bg-gray-200 transition">
 			<a href={route}>
@@ -16,16 +18,17 @@ export default function SideBar() {
 						src="http://cdn.onlinewebfonts.com/svg/img_568657.png"
 						alt="Profile image"
 					/>
-					<div className="flex flex-col width-[100%]">
+					<div className="flex flex-col items-center width-[100%]">
 						<p className="font-bold text-xl">Josip Muzić</p>
-						<p className="ml-8">Admin</p>
+						<p>{role}</p>
 					</div>
 				</div>
 			</div>
 			<ul>
 				{createNavItem('Cage Inventory', '/')}
-				{createNavItem('Admin page', '/admin')}
-				{createNavItem('Professor Kits', '/professor-kits')}
+				{role == 'Administrator' && createNavItem('Admin page', '/admin')}
+				{(role == 'Administrator' || role == 'Professor') &&
+					createNavItem('Professor Kits', '/professor-kits')}
 			</ul>
 		</div>
 	)
