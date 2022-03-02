@@ -1,3 +1,4 @@
+export { default as ContentWrapper } from './ContentWrapper'
 export { default as Footer } from './Footer'
 export { default as InputField } from './InputField'
 export { default as InventoryCard } from './InventoryCard'
