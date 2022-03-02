@@ -1,0 +1,14 @@
+.customTableRow {
+    display: grid;
+    grid-template-columns: minmax(100px, 3fr) minmax(100px, 3fr) minmax(100px, 3fr) minmax(30px, 1fr);
+    padding: 4px;
+
+    &:nth-child(even) {
+        background-color: #f768021a;
+    }
+
+    &.header {
+        background-color: #f76802;
+        color: white;
+    }
+}

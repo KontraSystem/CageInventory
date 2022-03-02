@@ -3,15 +3,10 @@ import React, { useContext } from 'react'
 import DialogContext from '../../context/DialogContext'
 
 export default function Card({ item }) {
-	const { image, item_name } = item
+	const { id, image, item_name } = item
 
 	const { setDialog } = useContext(DialogContext)
-	const toggleDialog = () => {
-		setDialog({
-			isOpen: true,
-			...item,
-		})
-	}
+	const toggleDialog = () => setDialog({ isOpen: true, id, image })
 
 	return (
 		<>
