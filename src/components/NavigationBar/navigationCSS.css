@@ -1,25 +1,24 @@
-.secondary{
-    background-color: rgba(247, 105, 2, 0.6);
-
+.secondary {
+	background-color: rgba(247, 105, 2, 0.6);
 }
 
-.primary{
-    background-color: rgba(247, 105, 2);
-    border-bottom:3px solid white;
+.primary {
+	background-color: rgba(247, 105, 2);
+	border-bottom: 3px solid white;
 }
 
-.sidebar{
-    border: 1px solid rgba(0, 0, 0, .3);
+.sidebar {
+	border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .footer {
-    position: absolute;
-    float: right;
-    bottom: 0;
+	position: absolute;
+	float: right;
+	bottom: 0;
 }
 
-.footer-logo{
-    width: 25%;
-    height: 25%;
-    float: right;
+.footer-logo {
+	width: 25%;
+	height: 25%;
+	float: right;
 }
