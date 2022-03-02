@@ -1,15 +1,21 @@
 export default function LoadingIndicator({
 	isLoading = true,
 	color = 'orange',
-	size = 10,
+	size = 32,
 }) {
 	if (!isLoading) return <></>
+
+	const getDynamicCss = () => `border-${color} `
 
 	return (
 		<div className="w-[100%] h-[80%] flex justify-center items-center">
 			<div
-				style={{ borderTopColor: 'transparent' }}
-				className={`w-${size} h-${size} border-4 border-${color} border-solid rounded-full animate-spin`}
+				style={{
+					borderTopColor: 'transparent',
+					width: size,
+					height: size,
+				}}
+				className={`border-4 ${getDynamicCss()} border-solid rounded-full animate-spin`}
 			></div>
 		</div>
 	)

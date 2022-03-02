@@ -39,7 +39,7 @@ export default function Home() {
 					<h2 className="inline-block">Available</h2>
 				</div>
 			</div>
-			<LoadingIndicator isLoading={!data} color="orange" size={10} />
+			<LoadingIndicator isLoading={!data} />
 			{data && (
 				<div className="mx-12 overflow-x-auto px-4 py-8 grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-8">
 					{data.map((item) => (
