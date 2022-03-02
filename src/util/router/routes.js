@@ -39,6 +39,15 @@ const AllRoutes = [
 		path: '/returns',
 		component: <ImpendingReturns />,
 	},
+	//this will be changed
+	{
+		path: '/admin',
+		component: <Home />,
+	},
+	{
+		path: '/professor-kits',
+		component: <Kits />,
+	},
 	{
 		path: '*',
 		component: <Error />,
