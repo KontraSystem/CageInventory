@@ -3,10 +3,11 @@ import '../App.css'
 import { useNavigate } from 'react-router-dom'
 import { postLogin } from '../api'
 import { RegisterRoute } from '../util/router/routes'
-import { InputField } from '../components/'
+import { InputField, LoadingButton } from '../components/'
 
 export default function Login() {
 	const [error, setError] = useState('')
+	const [isLoading, setIsLoading] = useState(false)
 
 	const navigate = useNavigate()
 
@@ -17,6 +18,7 @@ export default function Login() {
 	})
 
 	const onLogin = (event) => {
+		setIsLoading(true)
 		event.preventDefault()
 		const { email, password } = event.target
 
@@ -25,12 +27,14 @@ export default function Login() {
 			password: password.value,
 		})
 			.then((res) => {
+				setIsLoading(false)
 				if (res.data.response.token) {
 					localStorage.setItem('token', res.data.response.token)
 					navigate('/')
 				}
 			})
 			.catch((err) => {
+				setIsLoading(false)
 				setError(err.response.data?.message ?? 'Something went wrong')
 			})
 	}
@@ -58,12 +62,7 @@ export default function Login() {
 					</div>
 
 					{error && <p className="text-red-500">{error}</p>}
-					<button
-						className="bg-green-500 hover:bg-green-300 transition text-white font-bold p-2 rounded w-32"
-						type="submit"
-					>
-						Login
-					</button>
+					<LoadingButton isLoading={isLoading} text={'Login'} />
 
 					<a
 						href="/"

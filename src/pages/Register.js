@@ -3,10 +3,11 @@ import '../App.css'
 import { useNavigate } from 'react-router-dom'
 import { postRegister } from '../api'
 import { LoginRoute } from '../util/router/routes'
-import { InputField } from '../components/'
+import { InputField, LoadingButton } from '../components/'
 
 export default function Register() {
 	const [error, setError] = useState('')
+	const [isLoading, setIsLoading] = useState(false)
 
 	const navigate = useNavigate()
 
@@ -17,6 +18,7 @@ export default function Register() {
 	})
 
 	const onRegister = (event) => {
+		setIsLoading(true)
 		event.preventDefault()
 		const { email, password, firstName, lastName, username } = event.target
 
@@ -34,12 +36,14 @@ export default function Register() {
 			roleId: 333,
 		})
 			.then((res) => {
+				setIsLoading(false)
 				if (res.data.response.token) {
 					localStorage.setItem('token', res.data.response.token)
 					navigate('/')
 				}
 			})
 			.catch((err) => {
+				setIsLoading(false)
 				setError(err.response.data?.message ?? 'Something went wrong')
 			})
 	}
@@ -70,12 +74,7 @@ export default function Register() {
 					</div>
 
 					{error && <p className="text-red-500">{error}</p>}
-					<button
-						className="bg-green-500 hover:bg-green-300 transition text-white font-bold p-2 rounded w-32"
-						type="submit"
-					>
-						Register
-					</button>
+					<LoadingButton isLoading={isLoading} text={'Register'} />
 				</form>
 				<div className="p-4 w-[100%] bg-white rounded flex justify-center items-center flex-col shadow-lg z-10">
 					<p>
