@@ -1,9 +1,10 @@
 import Active from '../../pages/Active'
 import Courses from '../../pages/Courses'
 import Home from '../../pages/Home'
-import Inventory from '../../pages/Inventory'
+import Kits from '../../pages/Kits'
 import Login from '../../pages/Login'
 import Register from '../../pages/Register'
+import ImpendingReturns from '../../pages/ImpendingReturns'
 import Error from '../../pages/Error'
 
 // ** Default Route
@@ -31,8 +32,12 @@ const AllRoutes = [
 		component: <Home />,
 	},
 	{
-		path: '/inventory',
-		component: <Inventory />,
+		path: '/kits',
+		component: <Kits />,
+	},
+	{
+		path: '/returns',
+		component: <ImpendingReturns />,
 	},
 	{
 		path: '*',

@@ -1,22 +1,18 @@
 export default function InventoryNavigation() {
+	const createChild = (text, route) => (
+		<li className={route == window.location.pathname ? 'primary' : 'secondary'}>
+			<a className="hover:text-blue-800" href={route}>
+				{text}
+			</a>
+		</li>
+	)
+
 	return (
 		<div className="bg-orange text-white">
 			<ul className="grid grid-cols-3 gap-4 text-center mb-1.5">
-				<li className="mr-6 primary">
-					<a className="hover:text-blue-800" href="#">
-						Inventory
-					</a>
-				</li>
-				<li className="mr-6 secondary">
-					<a className="hover:text-blue-800" href="#">
-						Kits
-					</a>
-				</li>
-				<li className="mr-6 secondary">
-					<a className="hover:text-blue-800 " href="#">
-						Impending Returns
-					</a>
-				</li>
+				{createChild('Inventory', '/')}
+				{createChild('Kits', '/kits')}
+				{createChild('Impending Returns', '/returns')}
 			</ul>
 		</div>
 	)

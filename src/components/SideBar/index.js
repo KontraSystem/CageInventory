@@ -25,7 +25,7 @@ export default function SideBar() {
 			<ul>
 				{createNavItem('Cage Inventory', '/')}
 				{createNavItem('Admin page', '/admin')}
-				{createNavItem('Professor Kits', '/kits')}
+				{createNavItem('Professor Kits', '/professor-kits')}
 			</ul>
 		</div>
 	)
