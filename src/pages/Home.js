@@ -1,7 +1,32 @@
+import { useEffect, useState } from 'react'
 import SearchField from 'react-search-field'
-import { ContentWrapper, InventoryCard } from '../components'
+import { getItems } from '../api'
+import { ContentWrapper, InventoryCard, InventoryCardDetails } from '../components'
+import LoadingIndicator from '../components/LoadingIndicator'
 
 export default function Home() {
+	const [data, setData] = useState()
+
+	useEffect(() => {
+		getItems()
+			.then(({ data }) => {
+				const { response } = data
+
+				setData(
+					response.map((item) => {
+						return {
+							...item,
+							image: 'https://images.prismic.io/frameworkmarketplace/cca31de3-3b75-4932-af96-7646b7eba6c7__DSC3630-Edit-cropped.jpg?auto=compress,format',
+						}
+					})
+				)
+			})
+			.catch((err) => {
+				setIsLoading(false)
+				setError(err.response.data?.message ?? 'Something went wrong')
+			})
+	}, [])
+
 	return (
 		<ContentWrapper>
 			<div className="inline-block">
@@ -14,7 +39,15 @@ export default function Home() {
 					<h2 className="inline-block">Available</h2>
 				</div>
 			</div>
-			<InventoryCard />
+			<LoadingIndicator isLoading={!data} color="orange" size={10} />
+			{data && (
+				<div className="mx-12 overflow-x-auto px-4 py-8 grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-8">
+					{data.map((item) => (
+						<InventoryCard item={item} key={item.id} />
+					))}
+				</div>
+			)}
+			<InventoryCardDetails />
 		</ContentWrapper>
 	)
 }
