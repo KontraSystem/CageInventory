@@ -1,3 +1,5 @@
+import { LoadingIndicator } from '..'
+
 function LoadingButton({ text, isLoading, className }) {
 	return (
 		<button
@@ -8,12 +10,7 @@ function LoadingButton({ text, isLoading, className }) {
 			type="submit"
 			disabled={isLoading}
 		>
-			{isLoading && (
-				<div
-					style={{ borderTopColor: 'transparent' }}
-					className="w-6 h-6 border-4 border-white-400 border-solid rounded-full animate-spin"
-				></div>
-			)}
+			<LoadingIndicator color="white-400" size={6} isLoading={isLoading} />
 			{text}
 		</button>
 	)
