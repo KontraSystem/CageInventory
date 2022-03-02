@@ -38,7 +38,9 @@ export default function Register() {
 			.then((res) => {
 				setIsLoading(false)
 				if (res.data.response.token) {
-					localStorage.setItem('token', res.data.response.token)
+					const { token, role } = res.data.response
+					localStorage.setItem('token', token)
+					localStorage.setItem('role', role)
 					navigate('/')
 				}
 			})
