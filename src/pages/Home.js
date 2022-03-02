@@ -1,10 +1,9 @@
 import SearchField from 'react-search-field'
-import { InventoryNavigation, ContentWrapper, InventoryCard } from '../components'
+import { ContentWrapper, InventoryCard } from '../components'
 
 export default function Home() {
 	return (
 		<ContentWrapper>
-			<InventoryNavigation />
 			<div className="inline-block">
 				<SearchField
 					placeholder="Search"
