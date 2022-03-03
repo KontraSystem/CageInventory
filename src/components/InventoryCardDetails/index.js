@@ -12,7 +12,7 @@ export default function DetailedCard() {
 	const { item_name, item_description, items: models } = data ?? {}
 
 	useEffect(() => {
-		// setData()
+		setData()
 		if (id) getItemById(id).then(({ data }) => setData(data.response))
 		// .catch((err) => console.error(err))
 	}, [id])
@@ -49,24 +49,26 @@ export default function DetailedCard() {
 						<LoadingIndicator isLoading={true} />
 					</div>
 				) : (
-					<>
-						<div className="grid grid-cols-2 h-[320px] max-w-[800px] relative">
-							<div className=" h-[320px] w-full relative">
-								<img
-									src={image}
-									className="rounded-lg max-w-full max-h-full m-auto absolute top-0 left-0 right-0 bottom-0"
-								/>
+					<div className="w-[70vw] max-w-[800px] relative">
+						<a
+							className="absolute -right-4 -top-4 rounded-full bg-white shadow-lg w-10 h-10 hover:bg-gray-200 hover:cursor-pointer transition flex justify-center items-center z-99"
+							onClick={resetDialog}
+						>
+							X
+						</a>
+						<h1 className="font-bold text-2xl border-b p-4">
+							{item_name}
+						</h1>
+						<div className="grid grid-cols-2 h-[240px] w-full relative">
+							<div className="h-[240px] p-4">
+								<div className="h-full w-full relative">
+									<img
+										src={image}
+										className="rounded-lg max-w-full max-h-full m-auto absolute top-0 left-0 right-0 bottom-0 shadow-lg"
+									/>
+								</div>
 							</div>
-							<div className="h-[320px] flex flex-col relative">
-								<a
-									className="absolute -right-4 -top-4 rounded-full bg-white shadow-lg w-10 h-10 hover:bg-gray-200 hover:cursor-pointer transition flex justify-center items-center z-99"
-									onClick={resetDialog}
-								>
-									X
-								</a>
-								<h1 className="font-bold text-2xl border-b p-4">
-									{item_name}
-								</h1>
+							<div className="h-[240px] flex flex-col relative">
 								<div className="max-h-full overflow-auto p-4">
 									{item_description}
 								</div>
@@ -109,7 +111,7 @@ export default function DetailedCard() {
 								<p className="ml-3">Add</p>
 							</button>
 						</div> */}
-					</>
+					</div>
 				)}
 			</div>
 		</div>
