@@ -11,13 +11,6 @@ export default function DetailedCard() {
 	const [data, setData] = useState()
 	const { item_name, item_description, items: models } = data ?? {}
 
-	useEffect(() => {
-		setData()
-		if (id) getItemById(id).then(({ data }) => setData(data.response))
-		// .catch((err) => console.error(err))
-	}, [id])
-	// }, [])
-
 	const resetDialog = useCallback(() => {
 		setDialog({})
 	}, [setDialog])
@@ -30,7 +23,13 @@ export default function DetailedCard() {
 		return () => window.removeEventListener('keydown', handleKeydown)
 	}, [resetDialog])
 
-	if (!isOpen) return null
+	useEffect(() => {
+		setData()
+		if (id) getItemById(id).then(({ data }) => setData(data.response))
+		// .catch((err) => console.error(err))
+	}, [id])
+
+	if (!isOpen) return <></>
 
 	const getAvailabilityPill = (availability) =>
 		availability ? (
@@ -40,6 +39,11 @@ export default function DetailedCard() {
 		) : (
 			<span className="rounded-full bg-red-400 px-2 text-white">Taken</span>
 		)
+
+	//* Functionality
+	const addRequest = (id) => {
+		console.log(id)
+	}
 
 	return (
 		<div className="w-screen h-screen bg-black bg-opacity-50 absolute top-0 flex justify-center items-center px-[10vw]">
@@ -93,7 +97,10 @@ export default function DetailedCard() {
 											{getAvailabilityPill(model.availability)}
 										</span>
 										<div className="flex justify-center">
-											<button className="flex bg-green-500 rounded-full hover:bg-green-300 transition text-white p-1">
+											<button
+												className="flex bg-green-500 rounded-full hover:bg-green-300 transition text-white p-1"
+												onClick={() => addRequest(model.id)}
+											>
 												<i className="fa-solid fa-plus"></i>
 											</button>
 										</div>
@@ -101,16 +108,6 @@ export default function DetailedCard() {
 								))}
 							</div>
 						</div>
-						{/* <div className="flex float-right">
-							<button className="flex py-2 px-3 bg-green-500 rounded my-1 mx-2 active:bg-green-600">
-								<i className="fa-solid fa-pen-to-square"></i>
-								<p className="ml-3">Edit</p>
-							</button>
-							<button className="flex py-2 px-3 bg-blue-500 rounded my-1 mx-2 active:bg-blue-600">
-								<i className="fa-solid fa-plus"></i>
-								<p className="ml-3">Add</p>
-							</button>
-						</div> */}
 					</div>
 				)}
 			</div>
