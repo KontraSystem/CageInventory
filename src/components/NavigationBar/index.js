@@ -1,16 +1,10 @@
 import React, { useState } from 'react'
 import './navigationCSS.css'
-import { useNavigate } from 'react-router-dom'
 
 export default function NavigationBar({ onClick }) {
 	const [navBarOpen, isNavBarOpen] = useState(false)
-	const navigate = useNavigate()
 
 	const onNavBarClick = () => isNavBarOpen(!navBarOpen)
-	const onLogout = () => {
-		localStorage.removeItem('token')
-		navigate('/')
-	}
 
 	const genericHamburgerLine = `h-1 w-6 my-1 rounded-full bg-white transition ease transform duration-200`
 	return (
@@ -39,12 +33,6 @@ export default function NavigationBar({ onClick }) {
 				</div>
 				<h1 className="text-white text-xl font-bold">RIT Cage Inventory</h1>
 				<i className="ml-auto opacity-70 hover:cursor-pointer fa fa-bell text-white"></i>
-				<button
-					className="bg-white rounded px-4 py-2 hover:cursor-pointer hover:text-orange transition"
-					onClick={onLogout}
-				>
-					<p>Logout</p>
-				</button>
 			</div>
 		</div>
 	)

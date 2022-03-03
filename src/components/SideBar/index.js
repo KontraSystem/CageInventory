@@ -1,12 +1,28 @@
+import { useNavigate } from 'react-router-dom'
+import { CgLogOut } from 'react-icons/cg'
+import {
+	MdOutlineInventory2,
+	MdOutlineAdminPanelSettings,
+	MdOutlineInventory,
+} from 'react-icons/md'
+
 export default function SideBar() {
 	const role = localStorage.getItem('role')
+	const navigate = useNavigate()
 
-	const createNavItem = (text, route) => (
-		<li className="hover:bg-gray-200 transition">
-			<a href={route}>
-				<div className="border-b-2 p-4">{text}</div>
-			</a>
-		</li>
+	const onLogout = () => {
+		localStorage.removeItem('token')
+		navigate('/')
+	}
+
+	const createNavItem = (text, route, icon) => (
+		<a
+			href={route}
+			className="border-b-2 p-4 block hover:bg-gray-200 transition flex items-center justify-between"
+		>
+			<span>{text}</span>
+			{icon}
+		</a>
 	)
 
 	return (
@@ -24,12 +40,29 @@ export default function SideBar() {
 					</div>
 				</div>
 			</div>
-			<ul>
-				{createNavItem('Cage Inventory', '/')}
-				{role == 'Administrator' && createNavItem('Admin page', '/admin')}
+			<div className="flex flex-col h-full">
+				{createNavItem('Cage Inventory', '/', <MdOutlineInventory2 />)}
+				{role == 'Administrator' &&
+					createNavItem(
+						'Admin page',
+						'/admin',
+						<MdOutlineAdminPanelSettings />
+					)}
 				{(role == 'Administrator' || role == 'Professor') &&
-					createNavItem('Professor Kits', '/professor-kits')}
-			</ul>
+					createNavItem(
+						'Professor Kits',
+						'/professor-kits',
+						<MdOutlineInventory />
+					)}
+				<a
+					href={'/'}
+					className="border-t-2 p-4 block hover:bg-gray-200 transition mt-auto flex items-center justify-between"
+					onClick={onLogout}
+				>
+					<span>Logout</span>
+					<CgLogOut />
+				</a>
+			</div>
 		</div>
 	)
 }
