@@ -15,7 +15,10 @@ export default function Card({ item }) {
 				className="bg-white border border-gray-100 rounded-lg text-center shadow-lg align-center hover:cursor-pointer hover:shadow-xl hover:-translate-y-2 transition"
 			>
 				<div>
-					<img src={image} className="rounded-t-lg w-full h-44" />
+					<img
+						src={image}
+						className="rounded-t-lg w-full h-44 object-cover"
+					/>
 				</div>
 				<p
 					style={{
