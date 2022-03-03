@@ -8,7 +8,7 @@ export default function LoadingIndicator({
 	const getDynamicCss = () => `border-${color} `
 
 	return (
-		<div className="w-[100%] h-[80%] flex justify-center items-center">
+		<div className="w-full h-[80%] flex justify-center items-center">
 			<div
 				style={{
 					borderTopColor: 'transparent',

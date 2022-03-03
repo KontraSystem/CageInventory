@@ -46,17 +46,17 @@ export default function Login() {
 	return (
 		<div className="bg-orange overflow-hidden">
 			<div className="h-screen px-[20vw] flex flex-col gap-8 justify-center items-center overflow-auto p-8">
-				<div className="p-4 w-[100%] bg-white rounded flex justify-center items-center flex-col shadow-lg z-10">
+				<div className="p-4 w-full bg-white rounded flex justify-center items-center flex-col shadow-lg z-10">
 					<img src="RIT_rgb_hor_k.png" width={500} />
 					<h1 className="font-bold text-2xl">Cage Inventory</h1>
 				</div>
 				<form
-					className="w-[100%] p-10 bg-white rounded flex gap-5 justify-center items-center flex-col shadow-lg z-10"
+					className="w-full p-10 bg-white rounded flex gap-5 justify-center items-center flex-col shadow-lg z-10"
 					onSubmit={onLogin}
 				>
 					<h3 className="font-bold text-2xl">Login</h3>
 
-					<div className="w-80 max-w-[100%] flex flex-col gap-5">
+					<div className="w-80 max-w-full flex flex-col gap-5">
 						<InputField type="email" name="email" label="Email" />
 						<InputField
 							type="password"
@@ -75,7 +75,7 @@ export default function Login() {
 						Forgot password?
 					</a>
 				</form>
-				<div className="p-4 w-[100%] bg-white rounded flex justify-center items-center flex-col shadow-lg z-10">
+				<div className="p-4 w-full bg-white rounded flex justify-center items-center flex-col shadow-lg z-10">
 					<p>
 						New to Cage Inventory?
 						<a

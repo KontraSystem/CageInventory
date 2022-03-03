@@ -1,7 +1,7 @@
 export default function InventoryNavigation() {
 	const createChild = (text, route) => (
 		<a
-			className={`hover:text-blue-800 w-[100%] p-2 ${
+			className={`hover:text-blue-800 w-full p-2 ${
 				route == window.location.pathname ? 'primary' : 'secondary'
 			}`}
 			href={route}

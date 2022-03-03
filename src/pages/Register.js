@@ -56,17 +56,17 @@ export default function Register() {
 	return (
 		<div className="bg-orange overflow-hidden">
 			<div className="h-screen p-8 px-[20vw] flex flex-col gap-8 justify-center items-center overflow-auto">
-				<div className="p-4 w-[100%] bg-white rounded flex justify-center items-center flex-col shadow-lg z-10">
+				<div className="p-4 w-full bg-white rounded flex justify-center items-center flex-col shadow-lg z-10">
 					<img src="RIT_rgb_hor_k.png" width={500} />
 					<h1 className="font-bold text-2xl">Cage Inventory</h1>
 				</div>
 				<form
-					className="w-[100%] p-10 bg-white rounded flex gap-5 justify-center items-center flex-col shadow-lg z-10"
+					className="w-full p-10 bg-white rounded flex gap-5 justify-center items-center flex-col shadow-lg z-10"
 					onSubmit={onRegister}
 				>
 					<h3 className="font-bold text-2xl">Register</h3>
 
-					<div className="w-[100%] grid grid-cols-1 gap-4 lg:grid-cols-2">
+					<div className="w-full grid grid-cols-1 gap-4 lg:grid-cols-2">
 						<InputField type="email" name="email" label="Email" />
 						<InputField
 							type="password"
@@ -81,7 +81,7 @@ export default function Register() {
 					{error && <p className="text-red-500">{error}</p>}
 					<LoadingButton isLoading={isLoading} text={'Register'} />
 				</form>
-				<div className="p-4 w-[100%] bg-white rounded flex justify-center items-center flex-col shadow-lg z-10">
+				<div className="p-4 w-full bg-white rounded flex justify-center items-center flex-col shadow-lg z-10">
 					<p>
 						Already have an account?
 						<a
