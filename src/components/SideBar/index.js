@@ -8,10 +8,12 @@ import {
 
 export default function SideBar() {
 	const role = localStorage.getItem('role')
+	const firstName = localStorage.getItem('first_name')
+	const lastName = localStorage.getItem('last_name')
 	const navigate = useNavigate()
 
 	const onLogout = () => {
-		localStorage.removeItem('token')
+		localStorage.clear()
 		navigate('/')
 	}
 
@@ -35,7 +37,9 @@ export default function SideBar() {
 						alt="Profile image"
 					/>
 					<div className="flex flex-col items-center width-[100%]">
-						<p className="font-bold text-xl">Josip Muzić</p>
+						<p className="font-bold text-xl">
+							{firstName} {lastName}
+						</p>
 						<p>{role}</p>
 					</div>
 				</div>

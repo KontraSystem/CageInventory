@@ -21,26 +21,29 @@ export default function Register() {
 		setIsLoading(true)
 		event.preventDefault()
 		const { email, password, firstName, lastName, username } = event.target
-
-		// RoleId is currently hardcoded, change this in order to get the role id you want
-		// Admin - 111
-		// Worker - 222
-		// Student - 333
-		// Professor - 444
-		postRegister({
+		const body = {
 			email: email.value,
 			password: password.value,
 			firstName: firstName.value,
 			lastName: lastName.value,
 			username: username.value,
 			roleId: 333,
-		})
+		}
+
+		// RoleId is currently hardcoded, change this in order to get the role id you want
+		// Admin - 111
+		// Worker - 222
+		// Student - 333
+		// Professor - 444
+		postRegister(body)
 			.then((res) => {
 				setIsLoading(false)
 				if (res.data.response.token) {
 					const { token, role } = res.data.response
 					localStorage.setItem('token', token)
 					localStorage.setItem('role', role)
+					localStorage.setItem('first_name', body.firstName)
+					localStorage.setItem('last_name', body.lastName)
 					navigate('/')
 				}
 			})

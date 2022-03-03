@@ -29,9 +29,11 @@ export default function Login() {
 			.then((res) => {
 				setIsLoading(false)
 				if (res.data.response.token) {
-					const { token, role } = res.data.response
+					const { token, role, first_name, last_name } = res.data.response
 					localStorage.setItem('token', token)
 					localStorage.setItem('role', role)
+					localStorage.setItem('first_name', first_name)
+					localStorage.setItem('last_name', last_name)
 					navigate('/')
 				}
 			})
