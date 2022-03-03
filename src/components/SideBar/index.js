@@ -30,7 +30,7 @@ export default function SideBar() {
 	return (
 		<div className="flex flex-col group h-screen shadow bg-white w-60 sidebar">
 			<div className="border-b-4 border-gray-400">
-				<div className="flex flex-row gap-4 p-4 items-center">
+				<div className="flex flex-row gap-4 p-3 pt-3.5 items-center">
 					<img
 						className="object-cover w-12 h-12 rounded-full"
 						src="http://cdn.onlinewebfonts.com/svg/img_568657.png"
