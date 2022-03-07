@@ -1,5 +1,5 @@
 import React from 'react'
-import { AdminTable, ContentWrapper } from '../components'
+import { AdminTable, ContentWrapper, Footer } from '../components'
 
 export default function Admin() {
 	const info = {
@@ -11,6 +11,7 @@ export default function Admin() {
 	return (
 		<ContentWrapper>
 			<AdminTable />
+            <Footer />
 		</ContentWrapper>
 	)
 }

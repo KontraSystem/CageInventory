@@ -32,7 +32,7 @@ export default function Home() {
 			<div className="inline-block">
 				<SearchField
 					placeholder="Search"
-					classNames="searchContainer mx-12 my-2"
+					classNames="mx-12 my-2"
 				/>
 				<div className="bg-white inline ml-24">
 					<input type="checkbox" />
