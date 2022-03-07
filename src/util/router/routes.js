@@ -1,4 +1,5 @@
 import Active from '../../pages/Active'
+import Admin from '../../pages/Admin'
 import Courses from '../../pages/Courses'
 import Home from '../../pages/Home'
 import Kits from '../../pages/Kits'
@@ -42,7 +43,7 @@ const AllRoutes = [
 	//this will be changed
 	{
 		path: '/admin',
-		component: <Home />,
+		component: <Admin />,
 	},
 	{
 		path: '/professor-kits',
