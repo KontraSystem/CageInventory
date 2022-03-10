@@ -12,11 +12,15 @@
 }
 
 .footer {
-	position: absolute;
 	width: 100%;
-	bottom: 0;
+	margin-bottom: 0;
+	padding-bottom: 0;
 }
 
 .footer-logo {
 	float: right;
+}
+
+.footer-text {
+	text-align: center;
 }

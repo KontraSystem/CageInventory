@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { InventoryNavigation, NavigationBar, SideBar } from '..'
+import { Footer, InventoryNavigation, NavigationBar, SideBar } from '..'
 
 function ContentWrapper({ children }) {
 	const [navBarClicked, isNavbarClicked] = useState(false)
