@@ -8,29 +8,37 @@ import {
 	Routes,
 	useNavigate,
 } from 'react-router-dom'
+import { ShortDialog } from '../../components'
 
 // ** Routes & Default Routes
 import { LoginRoute, RegisterRoute, AllRoutes } from './routes'
 
 const Router = () => {
 	return (
-		<AppRouter>
-			<Routes>
-				{AllRoutes.map((route) => (
+		<>
+			<AppRouter>
+				<Routes>
+					{AllRoutes.map((route) => (
+						<Route
+							key={route.path}
+							path={route.path}
+							element={<PrivateRoute>{route.component}</PrivateRoute>}
+						/>
+					))}
 					<Route
-						key={route.path}
-						path={route.path}
-						element={<PrivateRoute>{route.component}</PrivateRoute>}
+						exact
+						path={LoginRoute.path}
+						element={LoginRoute.component}
 					/>
-				))}
-				<Route exact path={LoginRoute.path} element={LoginRoute.component} />
-				<Route
-					exact
-					path={RegisterRoute.path}
-					element={RegisterRoute.component}
-				/>
-			</Routes>
-		</AppRouter>
+					<Route
+						exact
+						path={RegisterRoute.path}
+						element={RegisterRoute.component}
+					/>
+				</Routes>
+			</AppRouter>
+			<ShortDialog />
+		</>
 	)
 }
 
