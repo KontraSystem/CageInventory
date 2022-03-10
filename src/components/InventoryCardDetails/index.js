@@ -7,7 +7,7 @@ import DialogContext from '../../context/DialogContext'
 
 export default function DetailedCard() {
 	const { dialog, setDialog } = useContext(DialogContext)
-	const { isOpen, image, id } = dialog
+	const { image, itemId } = dialog
 	const [data, setData] = useState()
 	const { item_name, item_description, items: models } = data ?? {}
 
@@ -25,11 +25,11 @@ export default function DetailedCard() {
 
 	useEffect(() => {
 		setData()
-		if (id) getItemById(id).then(({ data }) => setData(data.response))
+		if (itemId) getItemById(itemId).then(({ data }) => setData(data.response))
 		// .catch((err) => console.error(err))
-	}, [id])
+	}, [itemId])
 
-	if (!isOpen) return <></>
+	if (!itemId) return <></>
 
 	const getAvailabilityPill = (availability) =>
 		availability ? (
