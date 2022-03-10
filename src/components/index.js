@@ -9,3 +9,5 @@ export { default as LoadingButton } from './LoadingButton'
 export { default as NavigationBar } from './NavigationBar'
 export { default as SideBar } from './SideBar'
 export { default as AdminTable } from './AdminTable'
+export { default as ShoppingCartIcon } from './ShoppingCartIcon';
+export { default as NotificationIcon } from './NotificationIcon';

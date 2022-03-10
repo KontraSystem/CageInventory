@@ -1,10 +1,17 @@
 import React, { useState } from 'react'
+import {Popover} from 'react-tiny-popover'
 import './navigationCSS.css'
+import { ShoppingCartIcon, NotificationIcon } from '../'
 
 export default function NavigationBar({ onClick }) {
 	const [navBarOpen, isNavBarOpen] = useState(false)
 
+	const [notificationsOpen, isNotificationsOpen] = useState(false)
+	const role = localStorage.getItem('role')
+
 	const onNavBarClick = () => isNavBarOpen(!navBarOpen)
+
+	const onNotificationClick = () => isNotificationsOpen(!notificationsOpen)
 
 	const genericHamburgerLine = `h-1 w-6 my-1 rounded-full bg-white transition ease transform duration-200`
 	return (
@@ -32,7 +39,10 @@ export default function NavigationBar({ onClick }) {
 					/>
 				</div>
 				<h1 className="text-white text-xl font-bold">RIT Cage Inventory</h1>
-				<i className="ml-auto opacity-70 hover:cursor-pointer fa fa-bell text-white"></i>
+				<div className="ml-auto">
+					<ShoppingCartIcon/>
+					<NotificationIcon/>
+				</div>
 			</div>
 		</div>
 	)
