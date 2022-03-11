@@ -5,6 +5,7 @@ function InputField({
 	label,
 	type = 'text',
 	required = true,
+	minLength = 0,
 }) {
 	return (
 		<div>
@@ -17,6 +18,7 @@ function InputField({
 				</label>
 			)}
 			<input
+				minLength={minLength}
 				value={value}
 				onChange={onChange}
 				type={type}

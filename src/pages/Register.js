@@ -72,6 +72,7 @@ export default function Register() {
 							type="password"
 							name="password"
 							label="Password"
+							minLength={6}
 						/>
 						<InputField name="firstName" label="First Name" />
 						<InputField name="lastName" label="Last Name" />
