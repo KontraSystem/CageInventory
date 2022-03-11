@@ -9,7 +9,7 @@ export default function Card({ item }) {
 	const toggleDialog = () => setDialog({ itemId: id, image })
 
 	return (
-		<div
+		<button
 			onClick={toggleDialog}
 			className="bg-white border border-gray-100 rounded-lg text-center shadow-lg align-center hover:cursor-pointer hover:shadow-xl hover:-translate-y-2 transition"
 		>
@@ -26,6 +26,6 @@ export default function Card({ item }) {
 			>
 				{item_name}
 			</p>
-		</div>
+		</button>
 	)
 }
