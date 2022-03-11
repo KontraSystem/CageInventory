@@ -1,8 +1,18 @@
-import React, { useState, useRef, useEffect, useContext } from 'react'
+import React, { useState, useRef, useEffect, useContext, useMemo } from 'react'
 import { Popover } from 'react-tiny-popover'
 import { LoadingIndicator } from '..'
-import { deleteCartAll, deleteCartItem, getCart, postCartSubmit } from '../../api'
+import {
+	deleteCartAll,
+	deleteCartItem,
+	getCart,
+	postCartSetCount,
+	postCartSubmit,
+} from '../../api'
 import DialogContext from '../../context/DialogContext'
+import debounce from 'lodash.debounce'
+
+let debounceInstance
+let differences = []
 
 export default function CartIcon() {
 	const { setDialog } = useContext(DialogContext)
@@ -22,19 +32,72 @@ export default function CartIcon() {
 		setDialog({
 			message: 'Do you want to remove the selected item from your cart?',
 			title: 'Are you sure?',
-			onConfirm: () =>
+			onConfirm: () => {
+				differences = differences.filter((item) => item.itemId !== id)
+				if (!differences.length) cancelDebounce()
+
 				deleteCartItem(id).then(() =>
 					setData(data.filter((item) => item.id != id))
-				),
+				)
+			},
 			isRedButton: true,
 		})
+	}
+
+	const onChangeDifference = (id, difference) => {
+		const newData = [...data]
+
+		const item = newData.find((item) => item.id === id)
+		if (item.item_count + difference < 1) return onDeleteItem(id)
+
+		item.item_count += difference
+		setData(newData)
+
+		const countItem = differences.find((item) => item.itemId === id)
+		if (countItem) {
+			if (countItem.difference + difference == 0) {
+				differences = differences.filter((item) => item.itemId !== id)
+			} else {
+				countItem.difference += difference
+			}
+		} else {
+			differences.push({ difference, itemId: id })
+		}
+
+		if (!differences.length) {
+			cancelDebounce()
+		} else {
+			debounceChangeDifference()
+		}
+	}
+
+	const updateChangeDifference = () => {
+		differences.forEach((dif) => postCartSetCount(dif)) // TODO: Add handlers for errors
+
+		differences = []
+	}
+
+	const debounceChangeDifference = useMemo(
+		() => (debounceInstance = debounce(updateChangeDifference, 3000)),
+		[]
+	)
+
+	const cancelDebounce = () => {
+		debounceInstance?.cancel()
+		debounceInstance = null
 	}
 
 	const onDeleteCart = () => {
 		setDialog({
 			message: 'Do you want to remove all items from your cart?',
 			title: 'Are you sure?',
-			onConfirm: () => deleteCartAll().then(() => setData([])),
+			onConfirm: () => {
+				if (differences.length) {
+					differences = []
+					cancelDebounce()
+				}
+				deleteCartAll().then(() => setData([]))
+			},
 			isRedButton: true,
 		})
 	}
@@ -95,7 +158,10 @@ export default function CartIcon() {
 														<button
 															className="rounded-full border-2 border-red-500 hover:bg-red-100  transition text-red-500 w-6 h-6"
 															onClick={() =>
-																addRequest(item.id)
+																onChangeDifference(
+																	item.id,
+																	-1
+																)
 															}
 														>
 															<i className="fa-solid fa-minus" />
@@ -106,7 +172,10 @@ export default function CartIcon() {
 														<button
 															className="rounded-full border-2 border-green-500 hover:bg-green-100 transition text-green-500 w-6 h-6"
 															onClick={() =>
-																addRequest(item.id)
+																onChangeDifference(
+																	item.id,
+																	1
+																)
 															}
 														>
 															<i className="fa-solid fa-plus" />
