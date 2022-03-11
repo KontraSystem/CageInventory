@@ -1,15 +1,17 @@
 import React, { useContext, useCallback, useEffect, useState } from 'react'
 import { LoadingIndicator } from '..'
-import { getItemById } from '../../api'
+import { getItemById, postCartAdd } from '../../api'
 import style from './InventoryCardDetails.module.scss'
 
 import DialogContext from '../../context/DialogContext'
+import LoadingButton from '../LoadingButton'
 
 export default function DetailedCard() {
 	const { dialog, setDialog } = useContext(DialogContext)
 	const { image, itemId } = dialog
 	const [data, setData] = useState()
 	const { item_name, item_description, items: models } = data ?? {}
+	const [loadingAddToCart, setLoadingAddToCart] = useState()
 
 	const resetDialog = useCallback(() => {
 		setDialog({})
@@ -31,18 +33,19 @@ export default function DetailedCard() {
 
 	if (!itemId) return <></>
 
-	const getAvailabilityPill = (availability) =>
-		availability ? (
-			<span className="rounded-full bg-blue-400 px-2 text-white">
-				Available
-			</span>
-		) : (
-			<span className="rounded-full bg-red-400 px-2 text-white">Taken</span>
-		)
+	// const getAvailabilityPill = (availability) =>
+	// 	availability ? (
+	// 		<span className="rounded-full bg-blue-400 px-2 text-white">
+	// 			Available
+	// 		</span>
+	// 	) : (
+	// 		<span className="rounded-full bg-red-400 px-2 text-white">Taken</span>
+	// 	)
 
 	//* Functionality
-	const addRequest = (id) => {
-		console.log(id)
+	const onAddToCart = () => {
+		setLoadingAddToCart(true)
+		postCartAdd({ isKit: false, itemId }).then(() => setLoadingAddToCart(false))
 	}
 
 	return (
@@ -77,8 +80,16 @@ export default function DetailedCard() {
 									{item_description}
 								</div>
 							</div>
+							<div className="absolute bottom-[-16px] right-4 z-20">
+								<LoadingButton
+									onClick={onAddToCart}
+									isLoading={loadingAddToCart}
+									text="Add to cart"
+									className="w-48"
+								/>
+							</div>
 						</div>
-						<div>
+						{/* <div>
 							<div
 								className={`${style.customTableRow} ${style.header} pr-4`}
 							>
@@ -107,7 +118,7 @@ export default function DetailedCard() {
 									</div>
 								))}
 							</div>
-						</div>
+						</div> */}
 					</div>
 				)}
 			</div>

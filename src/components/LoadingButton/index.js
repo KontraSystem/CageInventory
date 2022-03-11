@@ -1,4 +1,4 @@
-function LoadingButton({ text, isLoading, className }) {
+function LoadingButton({ text, isLoading, className, onClick = () => {} }) {
 	return (
 		<button
 			className={
@@ -7,6 +7,7 @@ function LoadingButton({ text, isLoading, className }) {
 			}
 			type="submit"
 			disabled={isLoading}
+			onClick={onClick}
 		>
 			{isLoading && (
 				<div
