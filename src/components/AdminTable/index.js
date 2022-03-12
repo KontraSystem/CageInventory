@@ -32,29 +32,29 @@ export default function AdminTable() {
                     <div className="inline-block py-2 min-w-full sm:px-6 lg:px-8">
                         <div className="overflow-hidden shadow-md sm:rounded-lg">
                             <table className="min-w-full">
-                                <thead className="bg-gray-100 dark:bg-gray-700">
+                                <thead className="bg-gray-100">
                                     <tr>
                                         <th
                                             scope="col"
-                                            className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                                            className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase "
                                         >
                                             User
                                         </th>
                                         <th
                                             scope="col"
-                                            className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                                            className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase "
                                         >
                                             Items
                                         </th>
                                         <th
                                             scope="col"
-                                            className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                                            className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase "
                                         >
                                             Date Taken
                                         </th>
                                         <th
                                             scope="col"
-                                            className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                                            className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase "
                                         >
                                             Date Returned
                                         </th>
@@ -62,17 +62,17 @@ export default function AdminTable() {
                                 </thead>
                                 <tbody>
                                     {userInfo.map((item, index) => (
-                                        <tr key={index} className="border-b odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700 dark:border-gray-600">
-                                            <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        <tr key={index} className="border-b odd:bg-white even:bg-gray-50">
+                                            <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                 {item.user}
                                             </td>
-                                            <td className="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                            <td className="py-4 px-6 text-sm text-gray-500 whitespace-nowrap ">
                                                 <button className='text-blue-500' >[{item.items}]</button>
                                             </td>
-                                            <td className="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                            <td className="py-4 px-6 text-sm text-gray-500 whitespace-nowrap ">
                                                 {item.dateTaken}
                                             </td>
-                                            <td className="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                            <td className="py-4 px-6 text-sm text-gray-500 whitespace-nowrap ">
                                                 {item.dateReturned}
                                             </td>
                                         </tr>
