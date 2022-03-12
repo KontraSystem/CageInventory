@@ -1,5 +1,3 @@
-import './footer.css'
-
 export default function Index() {
 	return (
 		<footer className="shadow-inner py-6 justify-between fixed inset-x-0 bottom-0 flex">

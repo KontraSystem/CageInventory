@@ -1,7 +1,12 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import SearchField from 'react-search-field'
+import DialogContext from '../../context/DialogContext'
 
 export default function AdminTable() {
+
+    // const{} = items
+	// const { setDialog } = useContext(DialogContext)
+	// const toggleDialog = () => setDialog({itemId: id, item}); console.log("clicked")
     
     const userInfo = [
         {user: "fg2027", items: "2", dateTaken: "2/1/2022", dateReturned: "5/1/2022"},
@@ -13,6 +18,8 @@ export default function AdminTable() {
     const handleSearch = () => {
         userInfo.find(el => el.length < 7)
     }
+
+    
 	return (
         <div>
             <SearchField
@@ -60,7 +67,7 @@ export default function AdminTable() {
                                                 {item.user}
                                             </td>
                                             <td className="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                [{item.items}]
+                                                <button className='text-blue-500' >[{item.items}]</button>
                                             </td>
                                             <td className="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
                                                 {item.dateTaken}
