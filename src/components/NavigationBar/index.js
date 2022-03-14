@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import {Popover} from 'react-tiny-popover'
+import React, { useEffect, useState } from "react";
+import { Popover } from 'react-tiny-popover'
 import './navigationCSS.css'
 import { ShoppingCartIcon, NotificationIcon } from '../'
 
@@ -7,6 +7,12 @@ export default function NavigationBar({ onClick }) {
 	const [navBarOpen, isNavBarOpen] = useState(false)
 
 	const [notificationsOpen, isNotificationsOpen] = useState(false)
+	const [isAdmin, SetIsAdmin] = useState(false)
+
+	useEffect(() => {
+		SetIsAdmin(localStorage.getItem('role') == 'Administrator')
+	}, [])
+
 	const role = localStorage.getItem('role')
 
 	const onNavBarClick = () => isNavBarOpen(!navBarOpen)
@@ -40,8 +46,8 @@ export default function NavigationBar({ onClick }) {
 				</div>
 				<h1 className="text-white text-xl font-bold">RIT Cage Inventory</h1>
 				<div className="ml-auto">
-					<ShoppingCartIcon/>
-					<NotificationIcon/>
+					{isAdmin ? <> </> : <> <ShoppingCartIcon /> </>}
+					<NotificationIcon />
 				</div>
 			</div>
 		</div>
