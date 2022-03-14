@@ -12,6 +12,11 @@ export default function DetailedCard() {
 	const [data, setData] = useState()
 	const { item_name, item_description, items: models } = data ?? {}
 	const [loadingAddToCart, setLoadingAddToCart] = useState()
+	const [isAdmin, SetIsAdmin] = useState(false)
+
+	useEffect(() => {
+		SetIsAdmin(localStorage.getItem('role') == 'Administrator')
+	}, [])
 
 	const resetDialog = useCallback(() => {
 		setDialog({})
@@ -33,14 +38,14 @@ export default function DetailedCard() {
 
 	if (!itemId) return <></>
 
-	// const getAvailabilityPill = (availability) =>
-	// 	availability ? (
-	// 		<span className="rounded-full bg-blue-400 px-2 text-white">
-	// 			Available
-	// 		</span>
-	// 	) : (
-	// 		<span className="rounded-full bg-red-400 px-2 text-white">Taken</span>
-	// 	)
+	const getAvailabilityPill = (availability) =>
+		availability ? (
+			<span className="rounded-full bg-blue-400 px-2 text-white">
+				Available
+			</span>
+		) : (
+			<span className="rounded-full bg-red-400 px-2 text-white">Taken</span>
+		)
 
 	//* Functionality
 	const onAddToCart = () => {
@@ -81,44 +86,71 @@ export default function DetailedCard() {
 								</div>
 							</div>
 							<div className="absolute bottom-[-16px] right-4 z-20">
-								<LoadingButton
-									onClick={onAddToCart}
-									isLoading={loadingAddToCart}
-									text="Add to cart"
-									className="w-48"
-								/>
+								{isAdmin ? (
+									<>
+										<button
+											className="bg-blue-500 hover:bg-blue-800 transition text-white font-bold p-2 rounded w-32 flex gap-4 justify-center"
+											onClick={() => {
+												this.setState({ editing: true })
+											}}
+										>
+											Edit
+										</button>{' '}
+									</>
+								) : (
+									<>
+										{' '}
+										<LoadingButton
+											onClick={onAddToCart}
+											isLoading={loadingAddToCart}
+											text="Add to cart"
+											className="w-48"
+										/>{' '}
+									</>
+								)}
 							</div>
 						</div>
-						{/* <div>
-							<div
-								className={`${style.customTableRow} ${style.header} pr-4`}
-							>
-								<span>Name</span>
-								<span>Location</span>
-								<span>Availability</span>
-							</div>
-							<div className="max-h-[170px] overflow-auto">
-								{models.map((model) => (
+						{isAdmin ? (
+							<>
+								{' '}
+								<div>
 									<div
-										className={`${style.customTableRow} border-t`}
+										className={`${style.customTableRow} ${style.header} pr-4`}
 									>
-										<span>{model.model}</span>
-										<span>{model.location_name}</span>
-										<span>
-											{getAvailabilityPill(model.availability)}
-										</span>
-										<div className="flex justify-center">
-											<button
-												className="flex bg-green-500 rounded-full hover:bg-green-300 transition text-white p-1"
-												onClick={() => addRequest(model.id)}
-											>
-												<i className="fa-solid fa-plus"></i>
-											</button>
-										</div>
+										<span>Name</span>
+										<span>Location</span>
+										<span>Availability</span>
 									</div>
-								))}
-							</div>
-						</div> */}
+									<div className="max-h-[170px] overflow-auto">
+										{models.map((model) => (
+											<div
+												className={`${style.customTableRow} border-t`}
+											>
+												<span>{model.model}</span>
+												<span>{model.location_name}</span>
+												<span>
+													{getAvailabilityPill(
+														model.availability
+													)}
+												</span>
+												<div className="flex justify-center">
+													<button
+														className="flex bg-green-500 rounded-full hover:bg-green-300 transition text-white p-1"
+														onClick={() =>
+															addRequest(model.id)
+														}
+													>
+														<i className="fa-solid fa-plus"></i>
+													</button>
+												</div>
+											</div>
+										))}
+									</div>
+								</div>{' '}
+							</>
+						) : (
+							<> </>
+						)}
 					</div>
 				)}
 			</div>

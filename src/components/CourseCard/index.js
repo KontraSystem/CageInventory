@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import DialogContext from '../../context/DialogContext'
 
 export default function CourseCard(props) {
@@ -21,7 +21,7 @@ export default function CourseCard(props) {
 				<img
 					src={props.img}
 					alt={props.course + ' Course Hero'}
-					className="w-full h-44 object-cover"
+					className="w-full h-48 object-cover"
 				/>
 			</div>
 			<p

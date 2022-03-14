@@ -2,7 +2,7 @@ import { ContentWrapper } from '../components'
 import CourseCard from '../components/CourseCard'
 import CourseCardDetailed from '../components/CourseCardDetailed'
 import SearchField from 'react-search-field'
-import SeniorImage from '../assets/Team-image.png'
+import SeniorImage from '../assets/SeniorTeamManagment.jpg'
 import UXImage from '../assets/UX-png.png'
 import SurveyImage from '../assets/NMDHero.png'
 

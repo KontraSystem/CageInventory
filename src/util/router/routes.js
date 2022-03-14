@@ -7,6 +7,7 @@ import Login from '../../pages/Login'
 import Register from '../../pages/Register'
 import ImpendingReturns from '../../pages/ImpendingReturns'
 import Error from '../../pages/Error'
+import CourseKits from '../../pages/CourseKits'
 
 // ** Default Route
 const LoginRoute = {
@@ -48,6 +49,10 @@ const AllRoutes = [
 	{
 		path: '/professor-kits',
 		component: <Courses />,
+	},
+	{
+		path: '/course-kits',
+		component: <CourseKits />,
 	},
 	{
 		path: '*',
