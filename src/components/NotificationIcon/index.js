@@ -4,13 +4,6 @@ export default function CartIcon(props) {
 	const [notificationsOpen, isNotificationsOpen] = useState(false)
 	const popoverRef = useRef(null)
 	const onNotificationClick = () => isNotificationsOpen(!notificationsOpen)
-	const shopping = [
-		{ items: 'Laptop', count: '1' },
-		{ items: 'Cable', count: '5' },
-		{ items: 'Sample', count: '5' },
-		{ items: 'Nesto', count: '5' },
-		{ items: 'Nesto drugo', count: '5' },
-	]
 	return (
 		<Popover
 			isOpen={notificationsOpen}
