@@ -47,7 +47,7 @@ const AllRoutes = [
 	},
 	{
 		path: '/professor-kits',
-		component: <Kits />,
+		component: <Courses />,
 	},
 	{
 		path: '*',

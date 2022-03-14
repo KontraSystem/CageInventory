@@ -1,24 +1,21 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useContext, useState } from 'react'
+import DialogContext from '../../context/DialogContext'
 
 export default function CourseCard(props) {
-	let navigate = useNavigate()
-	let reroute
+	const { img, course } = props
 
-	const routeChange = () => {
-		let path = `/course-kits#${props.course.id}`
-		navigate(path)
-	}
+	const { setDialog } = useContext(DialogContext)
 
-	reroute = () => {
-		routeChange()
+	const toggleDialog = () => {
+		setDialog({ img, course })
 	}
 
 	return (
 		<div
 			className="bg-white border border-gray-100 rounded-lg text-center shadow-lg align-center hover:cursor-pointer
-        hover:shadow-xl hover:-translate-y-2 transition m-6"
-			onClick={reroute} id={props.id}
+        hover:shadow-xl m-6"
+			onClick={toggleDialog}
+			id={props.id}
 		>
 			<div>
 				<img

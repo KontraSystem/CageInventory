@@ -30,10 +30,7 @@ export default function Home() {
 	return (
 		<ContentWrapper>
 			<div className="inline-block">
-				<SearchField
-					placeholder="Search"
-					classNames="mx-12 my-2"
-				/>
+				<SearchField placeholder="Search" classNames="mx-12 my-2" />
 				<div className="bg-white inline ml-24">
 					<input type="checkbox" />
 					<h2 className="inline-block">Available</h2>

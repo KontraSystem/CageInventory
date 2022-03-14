@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {Popover} from 'react-tiny-popover'
+import { Popover } from 'react-tiny-popover'
 import './navigationCSS.css'
 import { ShoppingCartIcon, NotificationIcon } from '../'
 
@@ -40,8 +40,8 @@ export default function NavigationBar({ onClick }) {
 				</div>
 				<h1 className="text-white text-xl font-bold">RIT Cage Inventory</h1>
 				<div className="ml-auto">
-					<ShoppingCartIcon/>
-					<NotificationIcon/>
+					<ShoppingCartIcon />
+					<NotificationIcon />
 				</div>
 			</div>
 		</div>

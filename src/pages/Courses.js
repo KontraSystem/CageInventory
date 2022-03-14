@@ -1,14 +1,11 @@
-import NavigationBar from '../components/NavigationBar'
+import { ContentWrapper } from '../components'
 
 export default function Courses() {
 	return (
-		<div
-			className={`${navBarClicked ? 'grid grid-flow-col auto-cols-min' : ''}`}
-		>
-			<div className="w-screen">
-				<NavigationBar onClick={toggleVisibility} />
+		<ContentWrapper>
+			<div>
 				<div>courses</div>
 			</div>
-		</div>
+		</ContentWrapper>
 	)
 }

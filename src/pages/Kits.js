@@ -1,5 +1,6 @@
 import { ContentWrapper } from '../components'
 import CourseCard from '../components/CourseCard'
+import CourseCardDetailed from '../components/CourseCardDetailed'
 import SearchField from 'react-search-field'
 import SeniorImage from '../assets/Team-image.png'
 import UXImage from '../assets/UX-png.png'
@@ -25,11 +26,11 @@ export default function Kits() {
 	]
 	return (
 		<ContentWrapper>
-			<div className="bg-gray-200 m-5">
+			<div>
 				<div className="inline-block">
 					<SearchField
 						placeholder="Search"
-						classNames="searchContainer mx-12 my-2"
+						classNames="searchContainer ml-6 my-2"
 					/>
 				</div>
 				{CourseData.map((course) => (
@@ -39,6 +40,7 @@ export default function Kits() {
 						key={course.id}
 					/>
 				))}
+				<CourseCardDetailed />
 			</div>
 		</ContentWrapper>
 	)
