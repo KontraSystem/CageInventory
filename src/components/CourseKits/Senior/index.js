@@ -7,7 +7,9 @@ export default function SeniorKits() {
 	return (
 		<ContentWrapper>
 			<div className="m-5">
-				<h2 className="text-center text-3xl font-normal leading-normal mt-0 mb-2 text-amber-600">Senior Project II</h2>
+				<h2 className="text-center text-3xl font-normal leading-normal mt-0 mb-2 text-amber-600">
+					Senior Project II
+				</h2>
 				<div className="inline-block">
 					<SearchField
 						placeholder="Search"

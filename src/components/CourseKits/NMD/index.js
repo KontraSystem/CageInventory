@@ -7,7 +7,9 @@ export default function NMDKits() {
 	return (
 		<ContentWrapper>
 			<div className="m-5">
-				<h2 className="text-center text-3xl font-normal leading-normal mt-0 mb-2 text-amber-600">NMD Digital Survey I</h2>
+				<h2 className="text-center text-3xl font-normal leading-normal mt-0 mb-2 text-amber-600">
+					NMD Digital Survey I
+				</h2>
 				<div className="inline-block">
 					<SearchField
 						placeholder="Search"
