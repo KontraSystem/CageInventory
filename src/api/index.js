@@ -3,7 +3,9 @@ import axios from 'axios'
 
 //* Helper functions
 export const BASE_URL = process.env.REACT_APP_API_URL
-const getToken = () => { return { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } } }
+const getToken = () => {
+	return { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
+}
 const GET = (url, header = getToken()) => axios.get(url, header)
 const DELETE = (url, header = getToken()) => axios.delete(url, header)
 const POST = (url, body = {}, header = getToken()) => axios.post(url, body, header)

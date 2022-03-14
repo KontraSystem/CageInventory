@@ -11,7 +11,7 @@ export default function Admin() {
 	return (
 		<ContentWrapper>
 			<AdminTable />
-            <Footer />
+			<Footer />
 		</ContentWrapper>
 	)
 }
