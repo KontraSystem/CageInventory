@@ -1,34 +1,42 @@
-import React, { useContext } from 'react'
+import React, { useState, useRef } from 'react'
 import SearchField from 'react-search-field'
-import DialogContext from '../../context/DialogContext'
+import { Popover } from 'react-tiny-popover'
 
 export default function AdminTable() {
-	// const{} = items
-	// const { setDialog } = useContext(DialogContext)
-	// const toggleDialog = () => setDialog({itemId: id, item}); console.log("clicked")
-
 	const userInfo = [
 		{
 			user: 'fg2027',
-			items: '2',
+			items: [
+				{ name: 'laptop', dateReturned: '5/1/2022' },
+				{ name: 'laptop2', dateReturned: '5/1/2022' },
+			],
 			dateTaken: '2/1/2022',
 			dateReturned: '5/1/2022',
 		},
 		{
 			user: 'lk1574',
-			items: '6',
+			items: [
+				{ name: 'laptop', dateReturned: '5/1/2022' },
+				{ name: 'laptop2', dateReturned: '5/1/2022' },
+				{ name: 'laptop3', dateReturned: '5/1/2022' },
+				{ name: 'laptop4', dateReturned: '5/1/2022' },
+			],
 			dateTaken: '2/1/2022',
 			dateReturned: '5/1/2022',
 		},
 		{
 			user: 'mxm9894',
-			items: '1',
+			items: [{ name: 'laptop', dateReturned: '5/1/2022' }],
 			dateTaken: '2/1/2022',
 			dateReturned: '5/1/2022',
 		},
 		{
 			user: 'jm1132',
-			items: '3',
+			items: [
+				{ name: 'laptop', dateReturned: '5/1/2022' },
+				{ name: 'laptop2', dateReturned: '5/1/2022' },
+				{ name: 'laptop3', dateReturned: '5/1/2022' },
+			],
 			dateTaken: '2/1/2022',
 			dateReturned: '5/1/2022',
 		},
@@ -37,6 +45,11 @@ export default function AdminTable() {
 	const handleSearch = () => {
 		userInfo.find((el) => el.length < 7)
 	}
+
+	const [listOpen, isListOpen] = useState(false)
+	const onListClick = () => isListOpen(!listOpen)
+
+	console.log(listOpen)
 
 	return (
 		<div>
@@ -88,8 +101,11 @@ export default function AdminTable() {
 												{item.user}
 											</td>
 											<td className="py-4 px-6 text-sm text-gray-500 whitespace-nowrap ">
-												<button className="text-blue-500">
-													[{item.items}]
+												<button
+													className="text-blue-500"
+													onClick={onListClick}
+												>
+													[{item.items.length}]
 												</button>
 											</td>
 											<td className="py-4 px-6 text-sm text-gray-500 whitespace-nowrap ">

@@ -8,10 +8,6 @@ import Register from '../../pages/Register'
 import ImpendingReturns from '../../pages/ImpendingReturns'
 import Error from '../../pages/Error'
 import CourseKits from '../../pages/CourseKits'
-import UXKits from '../../components/CourseKits/UX'
-import SeniorKits from '../../components/CourseKits/Senior'
-import NMDKits from '../../components/CourseKits/NMD'
-import ProfessorTable from '../../components/ProfessorTable'
 
 // ** Default Route
 const LoginRoute = {
@@ -52,23 +48,11 @@ const AllRoutes = [
 	},
 	{
 		path: '/professor-kits',
-		component: <ProfessorTable />,
+		component: <Courses />,
 	},
 	{
 		path: '/course-kits',
 		component: <CourseKits />,
-	},
-	{
-		path: '/SeniorDevelopmentProjectII',
-		component: <SeniorKits />,
-	},
-	{
-		path: '/DesigningTheUserExperience',
-		component: <UXKits />,
-	},
-	{
-		path: '/NMDDigitalSurveyI',
-		component: <NMDKits />,
 	},
 	{
 		path: '*',
