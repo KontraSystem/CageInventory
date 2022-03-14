@@ -8,6 +8,7 @@ import Register from '../../pages/Register'
 import ImpendingReturns from '../../pages/ImpendingReturns'
 import Error from '../../pages/Error'
 import CourseKits from '../../pages/CourseKits'
+import ProfessorTable from "../../components/ProfessorTable";
 
 // ** Default Route
 const LoginRoute = {
@@ -48,7 +49,7 @@ const AllRoutes = [
 	},
 	{
 		path: '/professor-kits',
-		component: <Courses />,
+		component: <ProfessorTable />,
 	},
 	{
 		path: '/course-kits',
