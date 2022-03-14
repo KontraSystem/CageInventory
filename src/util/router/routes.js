@@ -11,6 +11,7 @@ import CourseKits from '../../pages/CourseKits'
 import UXKits from '../../components/CourseKits/UX'
 import SeniorKits from '../../components/CourseKits/Senior'
 import NMDKits from '../../components/CourseKits/NMD'
+import ProfessorTable from '../../components/ProfessorTable'
 
 // ** Default Route
 const LoginRoute = {
@@ -51,7 +52,7 @@ const AllRoutes = [
 	},
 	{
 		path: '/professor-kits',
-		component: <Kits />,
+		component: <ProfessorTable />,
 	},
 	{
 		path: '/course-kits',
