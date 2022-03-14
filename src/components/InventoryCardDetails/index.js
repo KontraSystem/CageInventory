@@ -87,13 +87,16 @@ export default function DetailedCard() {
 							</div>
 							<div className="absolute bottom-[-16px] right-4 z-20">
 								{isAdmin ? (
-									<><button className="bg-blue-500 hover:bg-blue-800 transition text-white font-bold p-2 rounded w-32 flex gap-4 justify-center"
-										onClick={() => {
-											this.setState({ editing: true });
-										}}
-									>
-										Edit
-									</button> </>
+									<>
+										<button
+											className="bg-blue-500 hover:bg-blue-800 transition text-white font-bold p-2 rounded w-32 flex gap-4 justify-center"
+											onClick={() => {
+												this.setState({ editing: true })
+											}}
+										>
+											Edit
+										</button>{' '}
+									</>
 								) : (
 									<>
 										{' '}
