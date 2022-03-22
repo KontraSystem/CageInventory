@@ -6,6 +6,7 @@ function InputField({
 	type = 'text',
 	required = true,
 	minLength = 0,
+	multiline = false
 }) {
 	return (
 		<div>
@@ -17,16 +18,28 @@ function InputField({
 					{label}
 				</label>
 			)}
-			<input
-				minLength={minLength}
-				value={value}
-				onChange={onChange}
-				type={type}
-				name={name}
-				className="p-2 w-full focus:border-purple-700 rounded border-2 outline-none"
-				autoComplete="off"
-				required={required}
-			/>
+			{ multiline ?
+				<textarea
+					minLength={minLength}
+					value={value}
+					onChange={onChange}
+					type={type}
+					name={name}
+					className="p-2 w-full focus:border-purple-700 rounded border-2 outline-none"
+					autoComplete="off"
+					required={required}
+				/> :
+				<input
+					minLength={minLength}
+					value={value}
+					onChange={onChange}
+					type={type}
+					name={name}
+					className="p-2 w-full focus:border-purple-700 rounded border-2 outline-none"
+					autoComplete="off"
+					required={required}
+				/> 
+			}
 		</div>
 	)
 }

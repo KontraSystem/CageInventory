@@ -1,10 +1,20 @@
 import React, { useEffect, useCallback, useContext } from 'react'
-
+import { getCourseKits } from '../../api'
 import DialogContext from '../../context/DialogContext'
 
-export default function CourseCardDetailed() {
+export default function CourseCardDetailed(props) {
+	const { id } = props;
 	const { dialog, setDialog } = useContext(DialogContext)
-	const { img, course } = dialog
+	const { img, course, description } = dialog
+
+	useEffect(() => {
+		console.log('id', id)
+		if(id) {
+			getCourseKits(id).then((resp) => {
+				console.log(resp)
+			})
+		}
+	}, [id])
 
 	const resetDialog = useCallback(() => {
 		setDialog({})
@@ -39,25 +49,10 @@ export default function CourseCardDetailed() {
 								{course}
 							</h1>
 							<p className="mt-2">
-								This is a brief description of the course
+								{description}
 							</p>
 							<div className="bg-gray-200 m-2">
-								<table className="min-w-full m-2">
-									<thead className="font-bold text-lg">
-										Items in kit
-									</thead>
-									<thead>
-										<tbody>
-											<th>
-												<tr>what</tr>
-												<tr>what2s</tr>
-											</th>
-											<th>
-												<tr>what</tr>
-											</th>
-										</tbody>
-									</thead>
-								</table>
+								
 							</div>
 						</div>
 					</div>

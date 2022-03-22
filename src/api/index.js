@@ -15,6 +15,8 @@ const PATCH = (url, body = {}, header = getToken()) => axios.patch(url, body, he
 export const getItems = () => GET(`${BASE_URL}items/all`)
 export const getItemById = (id) => GET(`${BASE_URL}items/${id}`)
 export const getCart = () => GET(`${BASE_URL}cart/view`)
+export const getUserCourses = () => GET(`${BASE_URL}courses/all`)
+export const getCourseKits = (id) => GET(`${BASE_URL}courses/${id}/kits`)
 
 //* POST
 export const postLogin = (body) => POST(`${BASE_URL}auth/login`, body, {})

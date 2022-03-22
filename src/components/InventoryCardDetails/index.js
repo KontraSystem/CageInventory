@@ -5,6 +5,7 @@ import style from './InventoryCardDetails.module.scss'
 
 import DialogContext from '../../context/DialogContext'
 import LoadingButton from '../LoadingButton'
+import InputField from '../InputField'
 
 export default function DetailedCard() {
 	const { dialog, setDialog } = useContext(DialogContext)
@@ -13,12 +14,14 @@ export default function DetailedCard() {
 	const { item_name, item_description, items: models } = data ?? {}
 	const [loadingAddToCart, setLoadingAddToCart] = useState()
 	const [isAdmin, SetIsAdmin] = useState(false)
+	const [editing, setEditing] = useState(false);
 
 	useEffect(() => {
 		SetIsAdmin(localStorage.getItem('role') == 'Administrator')
 	}, [])
 
 	const resetDialog = useCallback(() => {
+		setEditing(false);
 		setDialog({})
 	}, [setDialog])
 
@@ -68,9 +71,11 @@ export default function DetailedCard() {
 						>
 							X
 						</a>
-						<h1 className="font-bold text-2xl border-b p-4">
-							{item_name}
-						</h1>
+						{ editing ? <InputField value={item_name}/> :
+							<h1 className="font-bold text-2xl border-b p-4">
+								{item_name}
+							</h1>
+						}
 						<div className="grid grid-cols-2 h-[240px] w-full relative">
 							<div className="h-[240px] p-4">
 								<div className="h-full w-full relative">
@@ -81,21 +86,46 @@ export default function DetailedCard() {
 								</div>
 							</div>
 							<div className="h-[240px] flex flex-col relative">
-								<div className="max-h-full overflow-auto p-4">
-									{item_description}
-								</div>
+								{ editing ? 
+									<InputField value={item_description} multiline/> :
+									<div className="max-h-full overflow-auto p-4">
+										{item_description}
+									</div>
+								}
 							</div>
-							<div className="absolute bottom-[-16px] right-4 z-20">
+							<div className=" absolute bottom-[10px] right-[150px] z-20">
+								{editing ? (
+											<button
+												className="bg-red-500 hover:bg-red-800 transition text-white font-bold p-2 rounded w-32 flex gap-4 justify-center"
+												onClick={() => {
+													setEditing(false)
+												}}
+											>
+												Cancel
+											</button>
+										) : null }
+							</div>
+							<div className=" absolute bottom-[10px] right-4 z-20">
 								{isAdmin ? (
 									<>
-										<button
-											className="bg-blue-500 hover:bg-blue-800 transition text-white font-bold p-2 rounded w-32 flex gap-4 justify-center"
-											onClick={() => {
-												this.setState({ editing: true })
-											}}
-										>
-											Edit
-										</button>{' '}
+										{ editing ? (
+											<button
+												className="bg-green-500 hover:bg-green-800 transition text-white font-bold p-2 rounded w-32 flex gap-4 justify-center"
+												onClick={() => {
+													setEditing(true)
+												}}
+											>
+												Save
+											</button>
+										) : <button
+												className="bg-blue-500 hover:bg-blue-800 transition text-white font-bold p-2 rounded w-32 flex gap-4 justify-center"
+												onClick={() => {
+													setEditing(true)
+												}}
+											>
+												Edit
+											</button>
+										}
 									</>
 								) : (
 									<>

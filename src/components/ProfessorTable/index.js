@@ -1,39 +1,69 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import SearchField from 'react-search-field'
 import DialogContext from '../../context/DialogContext'
 import { ContentWrapper } from '../index'
+import { getCourseKits, getUserCourses } from '../../api'
+import LoadingIndicator from '../LoadingIndicator'
+import NewKitDialog from '../NewKitDialog';
 
-export default function ProfessorTable() {
-	const userInfo = [
-		{
-			professor: 'Martin Žagar',
-			kits: '2',
-			course: 'SeniorDevelopmentProjectII',
-		},
-		{
-			professor: 'Aleksander Radovan',
-			kits: '2',
-			course: 'DesigningTheUserExperience',
-		},
-		{
-			professor: 'Ante Poljičak',
-			kits: '2',
-			course: 'NMDDigitalSurveyI',
-		},
-	]
+export default function ProfessorTable(props) {
+	const [courses, setCourses] = useState([])
+	const [professorKits, setProfessorKits] = useState([]);
+
+	const { setDialog } = useContext(DialogContext)
+
+	useEffect(() => {
+	 	getUserCourses().then((resp) => {
+			if(resp.data.response) {
+				setCourses(resp.data.response.map((course) => course));
+			}
+		})
+
+	}, [])
+
+	useEffect(() => {
+		if(courses.length > 0) {
+			let temp_kits = []
+			let counter = 0;
+			courses.forEach((course, c) => {
+				getCourseKits(course.id).then((resp) => {
+					temp_kits = temp_kits.concat(resp.data.response)
+				}).finally(() => {
+					if(counter === courses.length) {
+						setProfessorKits(temp_kits.map((kit) => {
+							const tableItem = kit
+							tableItem.course = course.course_name
+							return tableItem
+						}));
+					}
+				})
+				counter++;
+			})
+		}
+	}, [courses])
 
 	const handleSearch = () => {
 		userInfo.find((el) => el.length < 7)
 	}
 
+	const handleDialog = () => {
+		setDialog({ isOpen: true, courses: courses })
+	}
+
+
 	return (
 		<ContentWrapper>
 			<div>
-				<SearchField
-					placeholder="Search user"
-					classNames="flex sm:mx-12 lg:mx-16 my-2"
-					onEnter={handleSearch}
-				/>
+				<div>
+					<SearchField
+						placeholder="Search user"
+						classNames="flex sm:mx-12 lg:mx-16 my-2"
+						onEnter={handleSearch}
+					/>
+					<button onClick={handleDialog} className="bg-green-500 p-2 rounded-md my-3 float-right mx-4">
+						{"+ New Kit"} 
+					</button>
+				</div>
 				<div className="flex flex-col">
 					<div className="overflow-x-auto sm:mx-6 lg:mx-8">
 						<div className="inline-block py-2 min-w-full sm:px-6 lg:px-8">
@@ -45,30 +75,30 @@ export default function ProfessorTable() {
 												scope="col"
 												className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase "
 											>
-												Professor
+												Kit name
 											</th>
 											<th
 												scope="col"
 												className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase "
 											>
-												Kits
+												Kit description
 											</th>
 											<th
 												scope="col"
 												className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase "
 											>
-												Courses
+												Item Count
 											</th>
 										</tr>
 									</thead>
 									<tbody>
-										{userInfo.map((item, index) => (
+										{professorKits.length > 0 ? professorKits.map((item, index) => (
 											<tr
 												key={index}
 												className="border-b odd:bg-white even:bg-gray-50"
 											>
 												<td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">
-													{item.professor}
+													{item.kit_name}
 												</td>
 												<td className="py-4 px-6 text-sm text-gray-500 whitespace-nowrap ">
 													<button className="text-blue-500">
@@ -76,10 +106,10 @@ export default function ProfessorTable() {
 													</button>
 												</td>
 												<td className="py-4 px-6 text-sm text-gray-500 whitespace-nowrap ">
-													{item.course}
+													{0}
 												</td>
 											</tr>
-										))}
+										)) : <LoadingIndicator/>}
 									</tbody>
 								</table>
 							</div>
@@ -87,6 +117,7 @@ export default function ProfessorTable() {
 					</div>
 				</div>
 			</div>
+			<NewKitDialog/>
 		</ContentWrapper>
 	)
 }
