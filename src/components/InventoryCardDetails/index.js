@@ -1,6 +1,6 @@
 import React, { useContext, useCallback, useEffect, useState } from 'react'
 import { LoadingIndicator } from '..'
-import { getItemById, postCartAdd } from '../../api'
+import { getItemById, postCartAdd, postItemEdit } from '../../api'
 import style from './InventoryCardDetails.module.scss'
 
 import DialogContext from '../../context/DialogContext'
@@ -11,7 +11,7 @@ export default function DetailedCard() {
 	const { dialog, setDialog } = useContext(DialogContext)
 	const { image, itemId } = dialog
 	const [data, setData] = useState()
-	const { item_name, item_description, items: models } = data ?? {}
+	const { item_name, item_description, equipment_type_id, items: models } = data ?? {}
 	const [loadingAddToCart, setLoadingAddToCart] = useState()
 	const [isAdmin, SetIsAdmin] = useState(false);
 	const [editing, setEditing] = useState(false);
@@ -49,6 +49,16 @@ export default function DetailedCard() {
 
 	const handleItemDescription = (evt) => {
 		setItemDescription(evt.target.value)
+	}
+
+	const handleSaveEdit = () => {
+		setLoadingAddToCart(true);
+		postItemEdit(itemId, { name: itemName, description: itemDescription, equipmentType: equipment_type_id }).then(() => {
+			setEditing(false)
+			setLoadingAddToCart(false)
+		}).finally(() => {
+			getItemById(itemId).then(({ data }) => setData(data.response))
+		})
 	}
 
 	const getAvailabilityPill = (availability) =>
@@ -121,11 +131,7 @@ export default function DetailedCard() {
 										{ editing ? (
 											<button
 												className="bg-green-500 hover:bg-green-800 transition text-white font-bold p-2 rounded w-32 flex gap-4 justify-center"
-												onClick={() => {
-													setItemDescription(item_description)
-													setItemName(item_name)
-													setEditing(true)
-												}}
+												onClick={handleSaveEdit}
 											>
 												Save
 											</button>
