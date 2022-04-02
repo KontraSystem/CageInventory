@@ -13,8 +13,10 @@ export default function DetailedCard() {
 	const [data, setData] = useState()
 	const { item_name, item_description, items: models } = data ?? {}
 	const [loadingAddToCart, setLoadingAddToCart] = useState()
-	const [isAdmin, SetIsAdmin] = useState(false)
+	const [isAdmin, SetIsAdmin] = useState(false);
 	const [editing, setEditing] = useState(false);
+	const [itemName, setItemName] = useState(item_name);
+	const [itemDescription, setItemDescription] = useState(item_description)
 
 	useEffect(() => {
 		SetIsAdmin(localStorage.getItem('role') == 'Administrator')
@@ -40,6 +42,14 @@ export default function DetailedCard() {
 	}, [itemId])
 
 	if (!itemId) return <></>
+
+	const handleItemName = (evt) => {
+		setItemName(evt.target.value)
+	}
+
+	const handleItemDescription = (evt) => {
+		setItemDescription(evt.target.value)
+	}
 
 	const getAvailabilityPill = (availability) =>
 		availability ? (
@@ -71,7 +81,7 @@ export default function DetailedCard() {
 						>
 							X
 						</a>
-						{ editing ? <InputField value={item_name}/> :
+						{ editing ? <InputField onChange={handleItemName} value={itemName}/> :
 							<h1 className="font-bold text-2xl border-b p-4">
 								{item_name}
 							</h1>
@@ -87,7 +97,7 @@ export default function DetailedCard() {
 							</div>
 							<div className="h-[240px] flex flex-col relative">
 								{ editing ? 
-									<InputField value={item_description} multiline/> :
+									<InputField onChange={handleItemDescription} value={itemDescription} multiline/> :
 									<div className="max-h-full overflow-auto p-4">
 										{item_description}
 									</div>
@@ -152,25 +162,27 @@ export default function DetailedCard() {
 										<span>Availability</span>
 									</div>
 									<div className="max-h-[170px] overflow-auto">
-										{models.map((model) => (
+										{models.map((model, m) => (
 											<div
+												key={m+"-div"}
 												className={`${style.customTableRow} border-t`}
 											>
-												<span>{model.model}</span>
-												<span>{model.location_name}</span>
+												<span key={m+"-span_1"}>{model.model}</span>
+												<span key={m+"-span_2"}>{model.location_name}</span>
 												<span>
 													{getAvailabilityPill(
 														model.availability
 													)}
 												</span>
-												<div className="flex justify-center">
+												<div key={m+"-div_2"} className="flex justify-center">
 													<button
+														key={m+"-button"}
 														className="flex bg-green-500 rounded-full hover:bg-green-300 transition text-white p-1"
 														onClick={() =>
 															addRequest(model.id)
 														}
 													>
-														<i className="fa-solid fa-plus"></i>
+														<i key={m+"-i"} className="fa-solid fa-plus"></i>
 													</button>
 												</div>
 											</div>
