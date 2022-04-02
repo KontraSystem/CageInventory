@@ -122,6 +122,8 @@ export default function DetailedCard() {
 											<button
 												className="bg-green-500 hover:bg-green-800 transition text-white font-bold p-2 rounded w-32 flex gap-4 justify-center"
 												onClick={() => {
+													setItemDescription(item_description)
+													setItemName(item_name)
 													setEditing(true)
 												}}
 											>
@@ -130,6 +132,8 @@ export default function DetailedCard() {
 										) : <button
 												className="bg-blue-500 hover:bg-blue-800 transition text-white font-bold p-2 rounded w-32 flex gap-4 justify-center"
 												onClick={() => {
+													setItemName(item_name)
+													setItemDescription(item_description)
 													setEditing(true)
 												}}
 											>
