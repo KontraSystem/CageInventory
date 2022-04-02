@@ -9,7 +9,7 @@ export default function Admin() {
 		dateReturned: '4/1/2022',
 	}
 	return (
-		<ContentWrapper>
+		<ContentWrapper page={"admin"}>
 			<AdminTable />
 			<Footer />
 		</ContentWrapper>

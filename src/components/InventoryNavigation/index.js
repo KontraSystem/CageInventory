@@ -1,11 +1,7 @@
 import { useEffect, useState } from 'react'
 
-export default function InventoryNavigation() {
-	const [isAdmin, SetIsAdmin] = useState(false)
-
-	useEffect(() => {
-		SetIsAdmin(localStorage.getItem('role') == 'Administrator')
-	}, [])
+export default function InventoryNavigation({ page }) {
+	const [isAdmin, SetIsAdmin] = useState(localStorage.getItem('role') == 'Administrator')
 
 	const createChild = (text, route) => (
 		<a
@@ -17,19 +13,34 @@ export default function InventoryNavigation() {
 			{text}
 		</a>
 	)
-
-	return (
-		<div className="bg-orange text-white grid grid-cols-3 gap-4 text-center">
-			{isAdmin ? (
-				<> </>
-			) : (
-				<>
+	switch(page) {
+		case "admin": return (
+			<div className="bg-orange text-white grid grid-cols-3 gap-4 text-center">
+				<> 
 					{' '}
-					{createChild('Inventory', '/')}
-					{createChild('Kits', '/kits')}
-					{createChild('Impending Returns', '/returns')}{' '}
+					{createChild('Users', '/admin')}
+					{createChild('Requests', '/admin/requests')}
+					{createChild('Due returns', '/admin/returns')}
 				</>
-			)}
-		</div>
-	)
+			</div>
+		)
+		case "home": 
+			default: return (
+			<div className="bg-orange text-white grid grid-cols-3 gap-4 text-center">
+				{isAdmin ? (
+					<> 
+					</>
+				) : (
+					<>
+						{' '}
+						{createChild('Inventory', '/')}
+						{createChild('Kits', '/kits')}
+						{createChild('Impending Returns', '/returns')}{' '}
+					</>
+				)}
+			</div>
+		)
+
+	}
+
 }
