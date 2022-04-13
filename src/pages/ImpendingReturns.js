@@ -1,9 +1,17 @@
-import { ContentWrapper } from '../components'
+import { ContentWrapper, Footer, RequestTable, ReturnsTable } from '../components'
 
 export default function ImpendingReturns() {
 	return (
-		<ContentWrapper>
-			<h1>Nothing needs to be returned yet</h1>
+		<ContentWrapper page="admin">
+			<div className="grid grid-rows-2 grid-flow-row h-full" >
+				<div className="" >
+					<RequestTable/>
+				</div>
+				<div className="">
+					<ReturnsTable/>
+				</div>
+			</div>
+			<Footer/>			
 		</ContentWrapper>
 	)
 }

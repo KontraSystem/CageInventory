@@ -9,6 +9,7 @@ import ImpendingReturns from '../../pages/ImpendingReturns'
 import Error from '../../pages/Error'
 import CourseKits from '../../pages/CourseKits'
 import ProfessorTable from "../../components/ProfessorTable";
+import AdminLogs from "../../pages/AdminLogs";
 
 // ** Default Route
 const LoginRoute = {
@@ -38,14 +39,18 @@ const AllRoutes = [
 		path: '/kits',
 		component: <Kits />,
 	},
-	{
-		path: '/returns',
-		component: <ImpendingReturns />,
-	},
 	//this will be changed
 	{
 		path: '/admin',
 		component: <Admin />,
+	},
+	{
+		path: '/admin/requests-returns',
+		component: <ImpendingReturns />
+	},
+	{
+		path: '/admin/logs',
+		component: <AdminLogs/>
 	},
 	{
 		path: '/professor-kits',

@@ -19,8 +19,8 @@ export default function InventoryNavigation({ page }) {
 				<> 
 					{' '}
 					{createChild('Users', '/admin')}
-					{createChild('Requests', '/admin/requests')}
-					{createChild('Due returns', '/admin/returns')}
+					{createChild('Requests and Returns', '/admin/requests-returns')}
+					{createChild('App logs', '/admin/logs')}
 				</>
 			</div>
 		)
