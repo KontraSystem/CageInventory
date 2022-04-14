@@ -12,4 +12,6 @@ export { default as AdminTable } from './AdminTable'
 export { default as ShoppingCartIcon } from './ShoppingCartIcon'
 export { default as NotificationIcon } from './NotificationIcon'
 export { default as ShortDialog } from './ShortDialog'
-export { default as NewKitDialog } from './NewKitDialog'; 
+export { default as NewKitDialog } from './NewKitDialog' 
+export { default as ReturnsTable } from "./ReturnsTable"
+export { default as RequestTable } from "./RequestTable"

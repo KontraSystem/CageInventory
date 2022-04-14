@@ -28,7 +28,7 @@ export default function Home() {
 	}, [])
 
 	return (
-		<ContentWrapper>
+		<ContentWrapper page={"home"}>
 			<div className="inline-block">
 				<SearchField placeholder="Search" classNames="mx-12 my-2" />
 				<div className="bg-white inline ml-24">

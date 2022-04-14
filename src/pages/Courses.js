@@ -2,7 +2,7 @@ import { ContentWrapper } from '../components'
 
 export default function Courses() {
 	return (
-		<ContentWrapper>
+		<ContentWrapper page={"courses"}>
 			<div>
 				<div>courses</div>
 			</div>

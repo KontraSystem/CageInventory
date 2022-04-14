@@ -18,14 +18,23 @@ export const getCart = () => GET(`${BASE_URL}cart/view`)
 export const getUserCourses = () => GET(`${BASE_URL}courses/all`)
 export const getCourseKits = (id) => GET(`${BASE_URL}courses/${id}/kits`)
 export const getKitItems = (id) => GET(`${BASE_URL}items/by-course/${id}`)
+export const getLogs = () => GET(`${BASE_URL}logs/all`)
+export const getLogSeverity = (severity) => GET(`${BASE_URL}logs/severity/${severity}`)
+export const getRequests = () => GET(`${BASE_URL}requests/all`)
+export const getInventoryCheckout = () => GET(`${BASE_URL}requests/inventory-checkout`)
+export const getRequestsByUser = (id) => GET(`${Base_URL}requests/user/${id}`)
 
 //* POST
 export const postLogin = (body) => POST(`${BASE_URL}auth/login`, body, {})
 export const postRegister = (body) => POST(`${BASE_URL}auth/register`, body, {})
 export const postCartAdd = (body) => POST(`${BASE_URL}cart/add`, body)
 export const postCartSetCount = (body) => PATCH(`${BASE_URL}cart/set-count`, body)
+export const postItemEdit = (id, body) => PATCH(`${BASE_URL}items/${id}`, body)
+export const postAddItemModel = (body) => POST(`${BASE_URL}items/${id}/models/add`, body)
 export const postCartSubmit = () => POST(`${BASE_URL}cart/submit`)
 export const postNewKit = (id) => POST(`${BASE_URL}courses/${id}/kits`)
+export const postAcceptRequest = (body) => POST(`${BASE_URL}requests/accept`, body)
+export const postRejectRequest = (body) => POST(`${BASE_URL}requests/reject`, body)
 
 //* DELETE
 export const deleteCartAll = () => DELETE(`${BASE_URL}cart/all`)

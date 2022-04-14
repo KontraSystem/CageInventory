@@ -5,7 +5,7 @@ export default function CourseKits() {
 	y
 
 	return (
-		<ContentWrapper>
+		<ContentWrapper page={"courseKits"}>
 			<CourseData />
 		</ContentWrapper>
 	)
