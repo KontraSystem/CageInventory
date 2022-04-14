@@ -9,23 +9,33 @@ export default function RequestTable(props) {
 	const [requestData, setRequestData] = useState();
 
 	useEffect(() => {
+		handleGetRequests()
+	}, [])
+
+	const handleGetRequests = () => {
 		getRequests().then((resp) => {
-				console.log(resp.data.response)
+			console.log(resp.data.response)
 			if(resp.data.message === "Success") {
 				setRequestData(resp.data.response)
 			}
 		})
-	}, [])
+	}
 
-	const handleAcceptRequest = () => {
-		postRejectRequest().then(() => {
-			
+	const handleAcceptRequest = (userId, requestId) => {
+		postAcceptRequest({userId, requestId}).then((resp) => {
+			if(resp.data.message === "Success") {
+				console.log(resp)
+			}
+		}).finally(() => {
+			handleGetRequests()
 		})
 	}
 
-	const handleRejectRequest =() => {
-		postAcceptRequest().then(() => {
-
+	const handleRejectRequest =(userId, requestId) => {
+		postRejectRequest({userId, requestId}).then((resp) => {
+			console.log(resp)
+		}).finally(() => {
+			handleGetRequests()
 		});
 	}
 
@@ -83,10 +93,10 @@ export default function RequestTable(props) {
 														{item.email}
 													</td>
 													<td className="py-4 px-6 text-sm text-white whitespace-nowrap ">
-														<button className="bg-green-500 p-2 rounded-md my-3 float-left mx-4">
+														<button onClick={() => handleAcceptRequest(item.user_id, item.id)} className="bg-green-500 p-2 rounded-md my-3 float-left mx-4">
 															Accept
 														</button>
-														<button className="bg-red-500 p-2 rounded-md my-3 float-left mx-4">
+														<button onClick={() => handleRejectRequest(item.user_id, item.id)} className="bg-red-500 p-2 rounded-md my-3 float-left mx-4">
 															Reject
 														</button>
 													</td>
