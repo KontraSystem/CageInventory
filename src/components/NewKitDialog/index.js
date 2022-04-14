@@ -1,12 +1,14 @@
-import React, { useEffect, useCallback, useContext } from 'react'
-import { getCourseKits } from '../../api'
+import React, { useEffect, useCallback, useContext, useState } from 'react'
+import { getKitItems, postNewKit } from '../../api'
 import DialogContext from '../../context/DialogContext'
 import InputField from '../InputField'
+import Select from 'react-select'
+import LoadingIndicator from '../LoadingIndicator'
 
 export default function NewKitDialog(props) {
-	//const { id } = props;
 	const { dialog, setDialog } = useContext(DialogContext)
 	const { courses } = dialog
+	const [data, setData] = useState()
 	const resetDialog = useCallback(() => {
 		setDialog({})
 	}, [setDialog])
@@ -17,8 +19,23 @@ export default function NewKitDialog(props) {
 		}
 		window.addEventListener('keydown', handleKeydown)
 		return () => window.removeEventListener('keydown', handleKeydown)
+		
 	}, [resetDialog])
 
+	const getItems = (e) => {
+		setData()
+		getKitItems(e.target.value).then(({ data }) => setData(data.response))
+	}
+
+	useEffect(() => {
+		if(courses?.length)
+		getKitItems(courses[0].id).then(({ data }) => setData(data.response))
+	}, [courses])
+
+	const addNewKit = () => {
+		setData(true)
+		postNewKit({name, description, itemIds}).then(() => setData(false))
+	}
 	if(!dialog.isOpen) return null
 
 	return (
@@ -37,15 +54,33 @@ export default function NewKitDialog(props) {
 								<h1 className="font-bold text-2xl border-b p-4">
 									Create a new kit
 								</h1>
-								<div className="bg-gray-200 m-2">
+								<div className=" m-2">
 									<div>
-										<label htmlFor="classes">For Course:</label>
-									  	<select name="classes" id="classes">
+										<label htmlFor="classes">For course:</label>
+									  	<select name="classes" id="classes" onChange={getItems}>
 										    {courses.map((course) => {
-												return <option value={course.id} >{course.course_name}</option>								    									    	
+												return <option value={course.id} >{course.course_name}</option>			
+																    									    	
 										    })}
+											
 									  	</select>
 									</div>	
+									<div className='mt-4'> 
+											{
+												data? 
+												<Select 
+													isMulti
+													options={data.map((item) => {
+														return {
+															label: item.item_name,
+															value: item.id
+														}
+													})}
+													isSearchable={false}
+													name="kitItems"
+												/>
+											:  <LoadingIndicator />}
+									</div>
 								</div>
 							</div>
 							<div>
@@ -69,7 +104,7 @@ export default function NewKitDialog(props) {
 						<button onClick={resetDialog} className="bg-gray-500 p-2 mx-2 rounded-md ">
 							Cancel
 						</button>
-						<button className="bg-green-500 mx-2 p-2 rounded-md">
+						<button className="bg-green-500 mx-2 p-2 rounded-md" onClick={addNewKit}>
 							Save
 						</button>
 					</div>
