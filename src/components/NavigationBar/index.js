@@ -54,7 +54,6 @@ export default function NavigationBar({ onClick }) {
 							<ShoppingCartIcon />{' '}
 						</>
 					)}
-					<NotificationIcon />
 				</div>
 			</div>
 		</div>

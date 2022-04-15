@@ -9,9 +9,29 @@ export default function NewKitDialog(props) {
 	const { dialog, setDialog } = useContext(DialogContext)
 	const { courses } = dialog
 	const [data, setData] = useState()
+	const [courseId, setCourseId] = useState(undefined);
+	const [kitName, setKitName] = useState("")
+	const [kitDescription, setKitDescription] = useState("")
+	const [kitItems, setKitItems] = useState([]);
+
+
 	const resetDialog = useCallback(() => {
 		setDialog({})
 	}, [setDialog])
+
+	const handleKitDescription = (evt) => {
+		setKitDescription(evt.target.value);
+	}
+
+	const handleKitName = (evt) => {
+		setKitName(evt.target.value);
+	}
+
+	const handleKitItems = (evt) => {
+		setKitItems(evt.map((item) => {
+			return item.value
+		}))
+	}
 
 	useEffect(() => {
 		const handleKeydown = (e) => {
@@ -24,6 +44,7 @@ export default function NewKitDialog(props) {
 
 	const getItems = (e) => {
 		setData()
+		setCourseId(e.target.value)
 		getKitItems(e.target.value).then(({ data }) => setData(data.response))
 	}
 
@@ -33,8 +54,10 @@ export default function NewKitDialog(props) {
 	}, [courses])
 
 	const addNewKit = () => {
-		setData(true)
-		postNewKit({name, description, itemIds}).then(() => setData(false))
+		setDialog({})
+		if(courseId && kitName && kitDescription && kitItems) {
+			postNewKit(courseId, {name: kitName, description: kitDescription, itemIds: kitItems}).then(() => console.log(kitName, kitDescription, kitItems))
+		}
 	}
 	if(!dialog.isOpen) return null
 
@@ -70,14 +93,15 @@ export default function NewKitDialog(props) {
 												data? 
 												<Select 
 													isMulti
-													options={data.map((item) => {
+													options={data ? data.map((item) => {
 														return {
 															label: item.item_name,
 															value: item.id
 														}
-													})}
+													}) : []}
 													isSearchable={false}
 													name="kitItems"
+													onChange={handleKitItems}
 												/>
 											:  <LoadingIndicator />}
 									</div>
@@ -89,12 +113,16 @@ export default function NewKitDialog(props) {
 										id="kit_name"
 										name="kit_name"
 										label="Kit name"
+										value={kitName}
+										onChange={handleKitName}
 									/>
 									<InputField
-										id="kit_name"
-										name="kit_name"
+										id="kit_description"
+										name="kit_description"
 										label="Kit description"
 										multiline
+										value={kitDescription}
+										onChange={handleKitDescription}
 									/>
 								</div>
 							</div>

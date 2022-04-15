@@ -32,7 +32,7 @@ export const postCartSetCount = (body) => PATCH(`${BASE_URL}cart/set-count`, bod
 export const postItemEdit = (id, body) => PATCH(`${BASE_URL}items/${id}`, body)
 export const postAddItemModel = (body) => POST(`${BASE_URL}items/${id}/models/add`, body)
 export const postCartSubmit = () => POST(`${BASE_URL}cart/submit`)
-export const postNewKit = (id) => POST(`${BASE_URL}courses/${id}/kits`)
+export const postNewKit = (id, body) => POST(`${BASE_URL}courses/${id}/kits`, body)
 export const postAcceptRequest = (body) => POST(`${BASE_URL}requests/accept`, body)
 export const postRejectRequest = (body) => POST(`${BASE_URL}requests/reject`, body)
 
